@@ -1,0 +1,86 @@
+h2,.button-bar {
+    text-align: center;
+}
+
+#masthead {
+    display: none;
+}
+
+div.banner {
+    text-align: center;
+}
+
+div.banner img {
+    width: 325px;
+}
+
+div[role="main"] {
+    top: 56px;
+    background-color: transparent;
+}
+
+#loginForm {
+    width: 256px;
+    padding: 1em 5em;
+}
+
+#loginForm h1 {
+    color: #1d3552;
+    font-size: 1.2em;
+}
+
+[name="username"],[name="password"] {
+    width: 256px;
+    padding: 0.2em 0.25em;
+}
+
+input:invalid {
+    background-color: white !important;
+}
+
+fieldset {
+    margin-top: 4em;
+}
+
+div.link-bar {
+    text-align: center;
+    margin-top: 2em;
+}
+
+div.link-bar a,div.link-bar a:visited,div.link-bar a:hover {
+    color: #1d3552;
+}
+
+/*login CSS for phone in vertical origin*/
+@media only screen and (max-device-width: 320px) {
+    div.banner {
+        height: 111px;
+        margin-bottom: 30px;
+    }
+    div.banner img {
+        width: 280px;
+    }
+
+    #loginForm {
+        margin: 0 auto 0.8em auto;
+        padding: 0.5em 1em;
+    }
+
+    [name="username"],[name="password"] {
+        width: 248px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    .item {
+        margin-bottom: 0.6em;
+    }
+
+    .ui-button {
+        width: 100%;
+        line-height: 40px;
+        height: 40px;
+        margin-top: 14px;
+    }
+}

@@ -2,8 +2,85 @@
 <html>
     <head>
         <title>Home page</title>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="Anything weather, your custom weather solution" name="description" />
+        <link rel="shortcut icon" href="../src/res/icon.ioc" type="image/x-icon" />
+        <link rel="apple-touch-icon-precomposed" href="../src/res/touch-icon.png" />
+        <!-- lib -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+        <!-- base css & js -->
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/default/jquery-ui.custom.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/main.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/desktop.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/jquery.gritter.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/bubbles.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/tip-tip.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="../src/css/login.css" />
+        <link rel="stylesheet" href="../src/css/base.css" />
+        <script>var contextPath = '/aw-portal/';</script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to
+    a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome
+    Frame</a> to experience this site.</p><![endif]-->
+    <div id="masthead">
+        <header>
+            <div id="banner">
+                <h1>
+                    <a href="http://www.anythingweather.com" target="_blank">
+                        <img src="https://portal.anythingweather.com/aw-portal/public/images/aw-logo-103.png" height="40" width="103" border="0">
+                    </a>
+                    <span>WeatherCenter</span>
+                </h1>
+            </div>
+        </header>
+        <div id="mastheadGutter"></div>
+    </div>
+    <div role="main">
+        <div id="partialContent">
+            <div class="banner">
+                <img src="https://portal.anythingweather.com/aw-portal/public/images/aw-logo-large.png">
+            </div>
+            <fieldset id="loginForm">
+                <form action="https://portal.anythingweather.com/aw-portal/login?x-http-method-override=POST" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+                    <input type="hidden" name="authenticityToken" value="13eb82581429c63b791ed5e698ddc1c40490ebd0">
+
+                    <input type="hidden" name="redirectURL" value="https://portal.anythingweather.com/aw-portal/">
+
+                    <h2>Please log in</h2>
+
+                    <div class="item">
+                        <input type="text" name="username" autofocus placeholder="e-mail address" required value="">
+                    </div>
+
+                    <div class="item">
+                        <input type="password" name="password" placeholder="password" required>
+                    </div>
+
+                    <div class="item button-bar">
+                        <button type="submit">Log in</button>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <a href="http://www.anythingweather.com" target="_blank">AnythingWeather Communications, Inc. 41701 Corporate Way, Ste. 6, Palm Desert, CA 92260</a> <br>Copyright 1999-2012 AnythingWeather.com
+        </div>
+    </footer>
+    <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/modernizr-2.5.3.min.js"></script>
+        <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.forms.js"></script>
+        <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.validate.js"></script>
+        <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/tip-tip.min.js"></script>
+        <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/aw-portal.js"></script>
+        <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/jquery.gritter.js"></script>
+        <script src="../src/js/login/init.js"></script>
     </body>
 </html>
