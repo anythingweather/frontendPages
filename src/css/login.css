@@ -52,7 +52,7 @@ div.link-bar a,div.link-bar a:visited,div.link-bar a:hover {
 }
 
 /*login CSS for phone in vertical origin*/
-@media only screen and (max-device-width: 320px) {
+@media only screen and (max-device-width: 320px), screen and (max-device-width: 360px) {
     div.banner {
         height: 111px;
         margin-bottom: 30px;
