@@ -1,0 +1,1579 @@
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" ng-app> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" ng-app> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Settings for demo@rightweather.com</title>
+    <meta name="description" content="Settings for demo@rightweather.com">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script>var contextPath = '/aw-portal/';</script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/es5-shim.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/right/jquery-ui.custom.css" charset="utf-8" ></link>
+    <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/main.css" charset="utf-8" ></link>
+      <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/desktop.css" charset="utf-8" ></link>
+  <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/jquery.gritter.css" charset="utf-8" ></link>
+  <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/bubbles.css" charset="utf-8" ></link>
+  <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/tip-tip.css" charset="utf-8" ></link>
+    <!--suppress HtmlUnknownTag -->
+<style>
+  #accountSettingsDisplay { margin-top: 0; padding-bottom: 1em; }
+  fieldset.personalSettings label:first-child { width: 5.5em; }
+  fieldset.customerSettings label:first-child { width: 8em; }
+  ul.aw-activelist { width: 67%; }
+  li.userInfoPanel { display: none; margin-left: 2em !important; padding: 0.75em 1em !important; background-color: #fbf9f3; -moz-border-radius: 12px; -webkit-border-radius: 12px; border-radius: 12px;  }
+  li.userInfoPanel:hover { background-color: #fbf9f3 !important; }
+  li.userInfoPanel { font-size: 0.9em; }
+  li.userInfoPanel label { width: 5.5em; }
+  .userInfoPanel .buttonBar { text-align: left; width: auto; }
+  .userInfoPanel .buttonBar label { width: auto !important; margin-bottom: 0.25em;}
+
+  #locationsList li,#usersList li { margin-bottom: 0.25em; }
+
+  #broadcastMessagesTable { width: 99%; }
+  #broadcastMessagesTable td { vertical-align: top; }
+  #broadcastMessagesTable td:first-child { width: 7em; }
+  #broadcastMessagesTable td:last-child { width: 12em; font-style: italic; color: #888; }
+
+  div.messageText { width: auto; height: auto; overflow: auto; margin-bottom: 0.15em; }
+  div.messageText.compressed { width: 80%; height: 1.0em; overflow: hidden; display: inline-block; }
+  div.messageText ~ span.ellipsis { display: none; font-style: italic; color: #888; margin-left: 0.5em; }
+  div.messageText.compressed ~ span.ellipsis { display: inline-block; }
+</style>
+    <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/right/branding.css" charset="utf-8" ></link>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/modernizr-2.5.3.min.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.forms.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.validate.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/tip-tip.min.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/aw-portal.js"></script>
+    <script src="//maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.forms.js"></script>
+  <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.validate.min.js"></script>
+  <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/kato.formatDate.js"></script>
+  <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/kato.mapify.js"></script>
+  <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/activelist.js"></script>
+<script>
+  $(function(){
+
+      $('body').addClass('with-footer');
+
+      $('#usersList').activelist({
+      click: function(){
+        var item$ = $(this);
+        $('li.userInfoPanel').hide();
+        item$.next('li.userInfoPanel').fadeIn();
+      },
+      remove: function(){}
+    });
+
+      
+      $('#updateCredentialsButton').click(function(){
+      adminActions.changePersonalSettings($.parseJSON($(this).closest('[data-account]').attr('data-account')));
+    });
+
+      $('#changePasswordButton').click(function(){
+      adminActions.changePassword($.parseJSON($(this).closest('[data-account]').attr('data-account')))
+    });
+
+      $('#addLocationButton').click(function(){
+      $('#locationDialog').locationDialog('settings','success',function(){ window.location.reload(); });
+      $('#locationDialog').locationDialog('settings','mode','create-favorite');
+      $('#locationDialog').locationDialog('open');
+    });
+
+      $('#updateCustomerButton').click(function(){ $('#customerSettingsDialog').dialog('open'); });
+
+      $('td:contains("click for more")').each(function(n){
+      var td$ = $(this);
+      var m$ = $('div.messageText',this);
+      if (m$.get(0).scrollHeight - m$.height() > 3) {
+        td$
+          .css({ cursor: 'pointer' })
+          .click(function(){
+            $('.messageText',this).toggleClass('compressed');
+          });
+      }
+      else {
+        m$.removeClass('compressed');
+        m$.nextAll('span').remove();
+      }
+    });
+
+
+      $('select.adminActionsSelector').change(function(){
+      var control$ = $(this);
+      var command = control$.val();
+      var option$ = $(':selected',control$);
+      control$.val('');
+      var account = $.parseJSON(control$.closest('[data-account]').attr('data-account'));
+      var serviceAttr = option$.attr('data-service');
+      var service = serviceAttr ? $.parseJSON(serviceAttr) : null;
+      adminActions[command](account,service);
+    });
+
+      var adminActions = {
+
+      changePersonalSettings: function(account){
+        credentialsSettingsDialog$.showFor(account.credentials);
+      },
+
+      changePassword: function(account){
+        changePasswordDialog$.showFor(account.credentials.email);
+      },
+
+      changeiStrikeSettings: function(account,service) {
+        iStrikeSettingsDialog$.showFor(service,account);
+      }
+
+    };
+
+  });
+</script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-2987619-1', 'hailwatch.com');
+      ga('send', 'pageview');
+    </script>
+    <!-- Start CSS for setting -->
+    <link rel="stylesheet" href="../src/css/base.css" />
+    <link rel="stylesheet" href="../src/css/setting.css" />
+    <!-- End CSS for setting -->
+  </head>
+
+  <body data-branding="right">
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to
+    a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome
+    Frame</a> to experience this site.</p><![endif]-->
+
+    <div id="masthead">
+      <header>
+      <div id="banner">
+  <h1>
+          <img src="https://portal.anythingweather.com/aw-portal/public/images/partners/right/logo.png" height="40" border="0"></a>
+            <span>Demo's Weather Center</span>
+  </h1>
+</div>
+
+  <div id="logoutPane">
+        <button type="button" id="logoutButton" title="Log out of the service" class="tip-tip">Logout</button>
+  </div>
+
+  <nav>
+        <ul>
+      <li class="current">
+        <a href="settings.html">
+          <span class="full">Settings</span>
+          <span class="compact"><img src="https://portal.anythingweather.com/aw-portal/public/images/nav-icon-compact-settings.png"></span>
+        </a>
+      </li>
+              <li class="">
+          <a href="istrike-service.html">
+            <span class="full">iStrike</span>
+            <span class="compact"><img src="https://portal.anythingweather.com/aw-portal/public/images/nav-icon-compact-istrike.png"></span>
+          </a>
+        </li>
+                  <li class="">
+        <a href="forecastdisplay.html">
+          <span class="full">Forecast</span>
+          <span class="compact"><img src="https://portal.anythingweather.com/aw-portal/public/images/nav-icon-compact-forecast.png"></span>
+        </a>
+      </li>
+                        
+    </ul>
+  </nav>
+
+      </header>
+      <div id="mastheadGutter"></div>
+    </div>
+
+    <div role="main">
+      <div id="partialContent">
+        <div id="accountSettingsDisplay">
+
+<h2>Settings for Demo User (demo@rightweather.com)</h2>
+
+  
+<fieldset class="personalSettings" data-account="{
+ &quot;credentials&quot;: {
+  &quot;id&quot;: 4724,
+  &quot;firstName&quot;: &quot;Demo&quot;,
+  &quot;lastName&quot;: &quot;User&quot;,
+  &quot;email&quot;: &quot;demo@rightweather.com&quot;,
+  &quot;password&quot;: &quot;d35a18e066a710380f95b15415e7e24ccf8f9f16&quot;,
+  &quot;role&quot;: &quot;BASIC&quot;,
+  &quot;created&quot;: &quot;Mar 11, 2014 11:25:01 AM&quot;,
+  &quot;modified&quot;: &quot;Mar 11, 2014 11:25:01 AM&quot;,
+  &quot;isModified&quot;: false,
+  &quot;awCustomerId&quot;: 3664
+ },
+ &quot;awCustomer&quot;: {
+  &quot;id&quot;: 3664,
+  &quot;companyName&quot;: &quot;Right Weather&quot;,
+  &quot;active&quot;: true,
+  &quot;streetAddress&quot;: &quot;&quot;,
+  &quot;city&quot;: &quot;Providence&quot;,
+  &quot;zipCode&quot;: &quot;02826&quot;,
+  &quot;phoneNumber&quot;: &quot;&quot;,
+  &quot;faxNumber&quot;: &quot;&quot;,
+  &quot;partner&quot;: {
+   &quot;id&quot;: 5,
+   &quot;name&quot;: &quot;Right Weather, LLC&quot;,
+   &quot;handle&quot;: &quot;right&quot;,
+   &quot;senderAddress&quot;: &quot;iStrike@rightweather.com&quot;
+  }
+ },
+ &quot;iStrikeServiceEnabled&quot;: true,
+ &quot;forecastServiceEnabled&quot;: true,
+ &quot;radarServiceEnabled&quot;: false,
+ &quot;observationsServiceEnabled&quot;: false,
+ &quot;hailWatchServiceEnabled&quot;: false,
+ &quot;hailArchiveServiceEnabled&quot;: false,
+ &quot;hailSwathServiceEnabled&quot;: false,
+ &quot;iStrikeServiceIds&quot;: [1102,
+ 1103]
+}">
+  <legend>Your Personal Settings</legend>
+
+
+  <div class="item"><label>Name:</label> <span>Demo User</span></div>
+
+  <div class="item"><label>Username:</label> <span>demo@rightweather.com</span></div>
+
+  <div class="item"><label>Role:</label> <span>BASIC</span></div>
+
+</fieldset>
+
+  
+  
+</div>
+
+<!--suppress HtmlUnknownTag -->
+<style type="text/css">
+  #credentialsSettingsDialog { padding: 32px; }
+  #credentialsSettingsDialog div.item { margin-bottom: 12px; }
+  #credentialsSettingsDialog div.item label { display: inline; }
+  #credentialsSettingsDialog div.item label { display: inline-block; width: 6em; font-weight: bold; color: #777; }
+  #credentialsSettingsDialog_firstNameField,
+  #credentialsSettingsDialog_lastNameField,
+  #credentialsSettingsDialog_passwordField { width: 20em; }
+</style>
+
+<div id="credentialsSettingsDialog" class="iStrikeDialog">
+
+<form action="https://portal.anythingweather.com/aw-portal/settings/updatecredentialssettings" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="fancy" ><input type="hidden" name="authenticityToken" value="13eb82581429c63b791ed5e698ddc1c40490ebd0">
+
+  <input type="hidden" name="credentials.id">
+
+  <div class="item">
+    <label for="credentialsSettingsDialog_firstNameField">First name:</label> &nbsp;
+    <input type="text" id="credentialsSettingsDialog_firstNameField" name="credentials.firstName" class="required" title="Please enter first name" placeholder="first name">
+  </div>
+
+  <div class="item">
+    <label for="credentialsSettingsDialog_lastNameField">Last name:</label> &nbsp;
+    <input type="text" id="credentialsSettingsDialog_lastNameField" name="credentials.lastName" class="required" title="Please enter last name" placeholder="last name">
+  </div>
+
+  
+      <div class="item">
+      <label for="credentialsSettingsDialog_passwordField">Password:</label> &nbsp;
+      <input type="password" id="credentialsSettingsDialog_passwordField" name="credentials.password" class="required" title="Please enter your current password" placeholder="enter current password for verification">
+    </div>
+    
+  <div class="buttonBar">
+    <input type="submit" value="Update">
+  </div>
+
+  <div class="busyIndicator"><img src="https://portal.anythingweather.com/aw-portal/public/images/working.gif" alt="Busy"></div>
+
+
+</form>
+</div>
+
+<script type="text/javascript">
+
+  var credentialsSettingsDialog$;
+
+  (function(){
+
+    credentialsSettingsDialog$ = $('#credentialsSettingsDialog');
+    var dialog$ = credentialsSettingsDialog$;
+    var form$ = $('form',dialog$);
+
+        dialog$.showFor = function(credentials) {
+      dialog$.dialog('option',{
+        data: credentials,
+        title: 'Update settings for ' + credentials.firstName + ' ' + credentials.lastName
+      });
+      dialog$.dialog('open');
+    };
+
+        dialog$.dialog({
+      autoOpen: false,
+      closeOnEscape: true,
+      resizable: false,
+      modal: true,
+      title: 'Update your personal information',
+      width: 480,
+      open: function(){
+        form$.get(0).reset();
+        var credentials = dialog$.dialog('option','data');
+        $('[name="credentials.id"]',form$).val(credentials.id);
+        $('[name="credentials.firstName"]',form$).val(credentials.firstName);
+        $('[name="credentials.lastName"]',form$).val(credentials.lastName);
+        $('[name="credentials.email"]',form$).val(credentials.email);
+        $(':input:enabled',form$).get(0).focus();
+      }
+    });
+
+        form$.validate({
+      errorElement: 'div',
+      submitHandler: function(){
+        form$.ajaxSubmit({
+          success: function(){ dialog$.dialog('close'); location.reload(); },
+          error: function(){ /* not needed, handled by global handler */ }
+        });
+      },
+      errorPlacement: function(error, element) {
+        error.appendTo(element.closest('.item'));
+      }
+    });
+
+  })();
+</script>
+<!--
+-- Params:
+--  autoOpen: whether the dialog should auto-open or not, defaults to false
+--  passwordReset: if 'true', configure the dialog to not need an old password
+-->
+
+<style>
+  #changePasswordDialog label { width: 9.5em; }
+  input[type="password"] { width: 18em; }
+</style>
+
+<div id="changePasswordDialog">
+  <form action="https://portal.anythingweather.com/aw-portal/core/changepassword" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="fancy" ><input type="hidden" name="authenticityToken" value="13eb82581429c63b791ed5e698ddc1c40490ebd0">
+
+    <input type="hidden" name="username" value="">
+
+              <div class="item" style="margin-top: 1em;">
+        <label for="changePasswordDialog_oldPasswordField">Your password:</label>
+        <input type="password" id="changePasswordDialog_oldPasswordField" name="oldPassword" value="" class="required" title="Please enter your current (or temporary) password" placeholder="old password">
+      </div>
+    
+    <div class="item">
+      <label for="changePasswordDialog_newPasswordField">New password:</label>
+      <input type="password" id="changePasswordDialog_newPasswordField" name="newPassword" value="" class="required" title="Please enter your new password" placeholder="new password">
+    </div>
+
+    <div class="item">
+      <label for="changePasswordDialog_verifyPasswordField">Verify password:</label>
+      <input type="password" id="changePasswordDialog_verifyPasswordField" name="verifyPassword" value="" class="required" title="Please enter your new password again" placeholder="new password (again)">
+    </div>
+
+    <div class="buttonBar">
+      <input type="submit" value="Update">
+    </div>
+
+  <div class="busyIndicator"><img src="https://portal.anythingweather.com/aw-portal/public/images/working.gif" alt="Busy"></div>
+
+  
+</form></div>
+
+<script type="text/javascript">
+
+  var changePasswordDialog$;
+
+  $(function(){
+
+    changePasswordDialog$ = $('#changePasswordDialog');
+    var form$ = $('form',changePasswordDialog$);
+
+    changePasswordDialog$.showFor = function(email) {
+      $('[name="username"]',changePasswordDialog$).val(email);
+      form$.get(0).reset();
+      changePasswordDialog$.dialog('option','title','Change password for ' + email);
+      changePasswordDialog$.dialog('open');
+    };
+
+    changePasswordDialog$.dialog({
+      autoOpen: false,
+      closeOnEscape: false,
+      resizable: false,
+      modal: true,
+      title: 'Change your password',
+      width: 560,
+      open: function(){
+        $('form :input:enabled',changePasswordDialog$).get(0).focus();
+      }
+    });
+
+    form$.validate({
+      errorElement: 'div',
+      rules: {
+        oldPassword: {
+          required: true
+        },
+        newPassword: {
+          required: true,
+          minlength: 8
+        },
+        verifyPassword: {
+          required: true,
+          minlength: 8,
+          equalTo: "#changePasswordDialog_newPasswordField"
+        }
+      },
+      messages: {
+        oldPassword: {
+          required: "Please provide your current (or temporary) password"
+        },
+        newPassword: {
+          required: "Please enter your new password",
+          minlength: jQuery.format("Enter at least {0} characters")
+        },
+        verifyPassword: {
+          required: "Please enter your new password again",
+          minlength: jQuery.format("Enter at least {0} characters"),
+          equalTo: "Entry does not match new password, please carefully enter both fields with the same value"
+        }
+      },
+      submitHandler: function(){
+        form$.ajaxSubmit({
+          success: function(){
+            changePasswordDialog$.dialog('close');
+                                var who = $('[name="username"]',form$).val();
+            $('body').trigger('notify',{ title: 'Password changed.', text: 'The password for ' + who + ' has been changed as requested.', status: 'success' } );
+                      changePasswordDialog$.trigger('change-password-success');
+          },
+          error: function(xhr){
+            /* messaging handled globally */
+            $('form :input:enabled',changePasswordDialog$).get(0).focus();
+          }
+        });
+        return false;
+      },
+      errorPlacement: function(error, element) {
+        error.appendTo(element.closest('.item'));
+      }
+    });
+
+    var passwordExpired = false; //TODO: for real
+
+    if (passwordExpired) $('#changePasswordDialog').dialog('open');
+
+  });
+</script>
+<!--suppress HtmlUnknownTag -->
+<style type="text/css">
+  #customerSettingsDialog { padding: 32px; }
+  #customerSettingsDialog div.item { margin-bottom: 12px; }
+  #customerSettingsDialog div.item label { display: inline-block; width: 7.5em; }
+  #customerSettingsDialog_companyNameField { width: 21em; }
+  #customerSettingsDialog_stateField { width: 3em; }
+  #customerSettingsDialog_zipCodeField { width: 7em; }
+  #customerSettingsDialog_streetAddressField { width: 21em; }
+</style>
+
+<div id="customerSettingsDialog" class="iStrikeDialog">
+
+  <form action="https://portal.anythingweather.com/aw-portal/core/updatecustomersettings" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="fancy" ><input type="hidden" name="authenticityToken" value="13eb82581429c63b791ed5e698ddc1c40490ebd0">
+
+    <input type="hidden" name="customer.id" value="3664">
+
+    <div class="item">
+      <label for="customerSettingsDialog_companyNameField">Company name:</label> &nbsp;
+      <input type="text" id="customerSettingsDialog_companyNameField" name="customer.companyName" value="Right Weather" class="required" title="Please enter your company name">
+    </div>
+
+    <div class="item">
+      <label for="customerSettingsDialog_streetAddressField">Address:</label> &nbsp;
+      <input type="text" id="customerSettingsDialog_streetAddressField" name="customer.streetAddress" value="" class="required" title="Please enter your street address">
+      <br>
+      <label for="customerSettingsDialog_cityField">&nbsp;</label> &nbsp;
+      <input type="text" id="customerSettingsDialog_cityField" name="customer.city" value="Providence" class="required" title="Please enter your city">
+      <input type="text" id="customerSettingsDialog_stateField" name="customer.state" value="" class="required" title="Please enter your state">
+      <input type="text" id="customerSettingsDialog_zipCodeField" name="customer.zipCode" value="02826" class="required" title="Please enter your zip code">
+    </div>
+
+    <div class="item">
+      <label for="customerSettingsDialog_phoneNumberField">Phone #:</label> &nbsp;
+      <input type="text" id="customerSettingsDialog_phoneNumberField" name="customer.phoneNumber" value="" class="required" title="Please enter your phone number">
+    </div>
+
+    <div class="item">
+      <label for="customerSettingsDialog_faxNumberField">FAX #:</label> &nbsp;
+      <input type="text" id="customerSettingsDialog_faxNumberField" name="customer.faxNumber" value="" class="required" title="Please enter your FAX number">
+    </div>
+
+    <div class="buttonBar">
+      <input type="submit" value="Update">
+    </div>
+
+    <div class="busyIndicator"><img src="https://portal.anythingweather.com/aw-portal/public/images/working.gif" alt="Busy"></div>
+
+  
+</form>
+</div>
+
+<script type="text/javascript">
+
+  var customerSettingsDialog$;
+
+  (function(){
+
+    customerSettingsDialog$ = $('#customerSettingsDialog');
+    var dialog$ = customerSettingsDialog$;
+    var form$ = $('form',dialog$);
+
+    dialog$.dialog({
+      autoOpen: false,
+      closeOnEscape: true,
+      resizable: false,
+      modal: true,
+      title: 'Update your customer information',
+      width: 560,
+      open: function(){
+        form$.get(0).reset();
+        $(':input:enabled',form$).get(0).focus();
+      }
+    });
+
+    form$.validate({
+      errorElement: 'div',
+      submitHandler: function(){
+        form$.ajaxSubmit({
+          success: function(){ dialog$.dialog('close'); location.reload(); },
+          error: function(){ }
+        });
+      },
+      errorPlacement: function(error, element) {
+        error.appendTo(element.closest('.item'));
+      }
+    });
+
+  })();
+</script>
+
+
+<!--suppress HtmlUnknownTag -->
+<style type="text/css">
+  #locationDialog { padding: 0.5em 1em 1em 1em; }
+  #locationDialog div.item label { color: #777; display: inline-block !important; }
+  #locationDialog div.item label:first-child { width: 5.25em; }
+  #locationDialogMapCanvas { height: 480px; width: 652px; border: 1px solid black; margin: 8px 0; }
+  #locationDialogNameField { width: 43.5em; }
+  #locationDialogSearchField { width: 36em; }
+
+  #locationDialog .buttonBar { margin-top: 1em; }
+  #locationDialog .buttonBar button { width: auto; }
+  #locationDialog .buttonset-text { margin: 0 0.75em; }
+
+  #locationDialog p { text-align: center; }
+
+  #locationDialog div.item label.inboard { margin-left: 2em; }
+  #locationDialogSearchButton,#LocationDialog_findMeButton { margin-left: 1.5em; margin-right: 3.5em; font-size: 0.8em; float: right; }
+  #locationDialog .favorite-warning { display: none; margin-bottom: 1em; }
+  #locationDialog .updating-favorite .favorite-warning { display: block; }
+  #locationDialog .buttonSet { text-align: center; margin-bottom: 1em; }
+  #LocationDialog_mechanismRadioSet label { font-size: 0.8em; }
+  #LocationDialog_mechanismRadioSet { margin-top: 1em; }
+  #locationDialog .mechanism-pane-coords { display: none; }
+
+  #locationDialog.mode-update .hide-for-update { display: none; }
+  #locationDialog.mode-create .hide-for-create { display: none; }
+  #locationDialog.step1 .hide-for-step1 { display: none; }
+  #locationDialog.step2 .hide-for-step2 { display: none; }
+
+  #locationDialog .show-for-update { display: none; }
+  #locationDialog .show-for-create-favorite { display: none; }
+  #locationDialog .show-for-create-general-step1 { display: none; }
+  #locationDialog .show-for-create-general-step2 { display: none; }
+
+  #locationDialog.mode-update .show-for-update { display: block; }
+  #locationDialog.mode-create-favorite .show-for-create-favorite { display: block; }
+  #locationDialog.mode-create-general.step1 .show-for-create-general-step1 { display: block; }
+  #locationDialog.mode-create-general.step2 .show-for-create-general-step2 { display: block; }
+
+</style>
+
+<script type="text/javascript">
+  $.fn.locationDialog = function(options){
+    var dialog$ = this;
+    if (dialog$.length === 0) return;
+    var settings;
+    //
+    // If a command string, check that we've already been initialized and perform the command
+    //
+    if (typeof options === "string") {
+      if (!dialog$.hasClass('istrike-location-dialog')) return;
+      settings = dialog$.data('istrike-location-dialog-settings');
+      switch (options) {
+        //
+        // 'open', opens the dialog, optionally setting the field values
+        //
+        case 'open':
+          //
+          // Check mode
+          //
+          if ($.inArray(settings.mode,['update','create-favorite','create-general']) === -1) throw Error('mode of ' + settings.mode + ' is not valid');
+          //
+          // Get any update data
+          //
+          settings.data = arguments[1];
+          settings.updating = settings.data !== null;
+          if (!settings.data) settings.data = { id: '', latitude: '', longitude: '', name: '', ownerId: '', timeZoneId: '', updated: '' };
+          //
+          // Set up the mode
+          //
+          dialog$.removeClass('mode-update mode-create-favorite mode-create-general step1 step2');
+          dialog$.addClass('mode-' + settings.mode);
+          if (settings.mode === 'create-general') dialog$.addClass('step1');
+          //
+          // Open the dialog
+          //
+          dialog$.dialog('open');
+          var dialogTitle;
+          switch (settings.mode) {
+            case 'update': dialogTitle = 'Update ' + settings.data.name; break;
+            case 'create-favorite': dialogTitle = 'Create a new Favorite location'; break;
+            case 'create-general': dialogTitle = 'Create a new location'; break;
+            default: throw new Error('unknown mode: ' + settings.mode);
+          }
+          dialog$.dialog('option','title',dialogTitle);
+          dialog$.locationDialog('set-values',settings.data);
+          settings.map.location = new google.maps.LatLng(settings.data.latitude,settings.data.longitude);
+          dialog$.locationDialog('mapify');
+          if (settings.mode.indexOf('create-') === 0) {
+            locationDialog_moveToGeolocation();
+          }
+          break;
+        //
+        // 'close', closes the dialog.
+        //
+        case 'close':
+          dialog$.dialog('close');
+          break;
+        //
+        // 'set-values', sets the values of the fields form passed data.
+        //
+        case 'set-values':
+          settings.data = arguments[1];
+          if (!settings.data) break;
+          for (var key in settings.data) {
+            if (settings.data.hasOwnProperty(key)) $('[name$="' + key + '"]',dialog$).val(settings.data[key]);
+          }
+          break;
+        //
+        // 'mapify', sets up the map.
+        //
+        case 'mapify':
+          $('#locationDialogMapCanvas').mapify(settings.map);
+          break;
+        //
+        // 'settings', changes a setting value
+        //
+        case 'settings':
+          settings[arguments[1]] = arguments[2];
+          break;
+        //
+        // Anything else is trash
+        //
+        default:
+          throw new Error('Don\'t know about option ' + options);
+      }
+    }
+    //
+    // Otherwise, we are initializing the dialog.
+    //
+    else {
+      //
+      // Gather settings
+      //
+      settings = $.extend({
+        values: null,
+        formPrefix: null,
+        title: 'Location',
+        contextPath: '',
+        mode: 'create-general',
+        success: null
+      },options);
+      settings.map = $.extend({
+        title: 'Map',
+        location: null,
+        zoomLevel: 12,
+        radiusRings: null,
+        relocatable: true,
+        strikes: null,
+        circleStrikes: false,
+        imagePath: settings.contextPath + 'public/images',
+        thresholds: null
+      },options.map);
+      //
+      // Set up geolocation for enabled browsers
+      //
+      if (navigator.geolocation) {
+        $('#LocationDialog_findMeButton')
+            .button()
+            .click(function(){
+              locationDialog_moveToGeolocation();
+            });
+      }
+      else {
+        $('#LocationDialog_mechanismRadio_Current,label[for="LocationDialog_mechanismRadio_Current"]').remove();
+      }
+      //
+      // Instrument the buttons and buttonsets
+      //
+      $('.buttonSet',dialog$).buttonset();
+      $('.buttonSet').change(function(){
+        var buttonset$ = $(this);
+        var controlee = buttonset$.attr('data-controlee');
+        if (controlee) $(controlee).hide();
+        var activeButton$ = $(':checked',this);
+        controlee = activeButton$.attr('data-controlled-pane');
+        if (controlee) $(controlee).show();
+        var foci$ = $('input:enabled',$(controlee));
+        if (foci$.length !== 0) foci$.get(0).focus();
+      });
+      $('#locationDialogSearchButton')
+          .button({ icons: {primary:'ui-icon-search'} })
+          .click(function(){
+            $('#locationDialogMapCanvas').mapify('geocode',$('#locationDialogSearchField').val());
+          });
+      $('#locationDialogNextButton').button({ icons: {secondary:'ui-icon-arrowthick-1-e'} });
+      $('button[type="submit"]',dialog$).button();
+      $(dialog$).on('kato-mapify-location-changed',
+                    function(event,info){
+                      if (info.name) {
+                        $('#locationDialogNameField').val(info.name);
+                        //console.log("Name set to " + $('#locationDialogNameField').val());
+                      }
+                    });
+      //
+      // Make sure that the name field is dealt with appropriately
+      //
+      $('[name="locationType"]').change(function(){
+        var isFavorite = $(this).val() === 'favorite';
+        $('#locationDialogNameField').attr('disabled',!isFavorite);
+        if (isFavorite) $('#locationDialogNameField').get(0).focus();
+      });
+      //
+      // Instrument the Next button
+      //
+      $('#locationDialogNextButton').click(function(){
+        var ok = $('#locationDialog form').validate().form();
+        if (ok) {
+          dialog$.removeClass('step1').addClass('step2');
+          $('#locationDialogNameField').get(0).focus();
+        }
+        else {
+          dialog$.trigger('notify',{ title: 'Validation problem', text: 'Please fix the problems with your values before proceeding.', status: 'error' });
+        }
+      });
+      //
+      // Instrument the coordinate fields
+      //
+      $('#locationDialogLatitudeField').add('#locationDialogLongitudeField').change(function(){
+        var latitudeField$ = $('#locationDialogLatitudeField');
+        var longitudeField$ = $('#locationDialogLongitudeField');
+        if (isNaN(latitudeField$.val()) || isNaN(longitudeField$.val())) return false;
+        $('#locationDialogMapCanvas').mapify('relocate',latitudeField$.val(),longitudeField$.val(),true);
+        $('#locationDialogNameField')
+            .val('At [' + latitudeField$.val() + ',' + longitudeField$.val() + ']');
+        //console.log("Name set to " + $('#locationDialogNameField').val());
+      });
+      //
+      // Catch map events
+      //
+      dialog$.bind('kato-mapify-location-changed',function(event,info){
+        if (info.name) {
+          var nameField$ = $('#locationDialogSearchField');
+          var name = info.name;
+          var maxLength = nameField$.attr('maxlength');
+          if (maxLength) name = name.substr(0,parseInt(maxLength,10));
+          nameField$.val(name);
+        }
+        $('#locationDialogLatitudeField').val(info.latitude.toFixed(6));
+        $('#locationDialogLongitudeField').val(info.longitude.toFixed(6));
+      });
+      //
+      // Mark the dialog as set up and tack on the settings
+      //
+      dialog$
+          .addClass('istrike-location-dialog')
+          .data('istrike-location-dialog-settings',settings);
+      //
+      // Establish the dialog
+      //
+      dialog$.dialog({
+        autoOpen: false,
+        closeOnEscape: true,
+        resizable: false,
+        modal: true,
+        title: settings.title,
+        width: 720,
+        open: function(){
+          //$('#locationDialogSearchField').get(0).focus();
+          $(':text:enabled:first').get(0).focus();
+        }
+      });
+      //
+      // If values were provided, fill in the corresponding fields
+      //
+      if (settings.values) dialog$.locationDialog('set-values',settings.values);
+      //
+      // Prefix the form element names with the supplied prefix
+      //
+      if (settings.formPrefix) {
+        $('[name]',dialog$).each(function(){
+          $(this).attr('name',settings.formPrefix + $(this).attr('name'));
+        });
+      }
+      //
+      // Establish the form validation
+      //
+      $('form',dialog$).validate({
+        errorElement: 'div',
+        submitHandler: function(form){
+          $(form).ajaxSubmit({
+            url: '/aw-portal/locations/updatelocation',
+            success: function(locationRep){
+              var result = true;
+              if (settings.success) result = settings.success.call(dialog$,locationRep);
+              if (result) dialog$.locationDialog("close");
+            }
+          });
+          return false;
+        },
+        errorPlacement: function(error, element) {
+          error.appendTo(element.closest('.item'));
+        }
+      });
+    }
+  };
+
+  function locationDialog_moveToGeolocation(){
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      function(position){
+        $('#locationDialogMapCanvas').mapify(
+            'relocate',
+            position.coords.latitude,
+            position.coords.longitude,
+            true);
+        $('#locationDialogNameField')
+            .val('At [' + position.coords.latitude.toFixed(6) + ',' + position.coords.longitude.toFixed(6) + ']')
+            .get(0).focus();
+        //console.log("Name set to " + $('#locationDialogNameField').val());
+        $('#locationDialogNameField').get(0).select();
+      },
+      function(error){
+        var message;
+        if (error.code === 1) {
+          message = 'You must allow the browser to use your location information for this to work!';
+        }
+        else {
+          message = 'Sorry, your current location could not be determined.';
+          if (error.message) message += (' ' + error.message);
+        }
+        window.alert(message);
+      },
+      { enableHighAccuracy: true, maximumAge: 1000 * 60 * 5 }
+    );
+  }
+
+</script>
+
+<div id="locationDialog">
+
+  <form class="fancy" method="post">
+    <input type="hidden" name="id" value="">
+
+    <p class="show-for-update">
+      Be aware that changing settings for this Favorite location updates those settings for all users that are using this Favorite.
+    </p>
+
+    <div class="show-for-create-general-step2">
+
+      <p>
+        Do you want to create the new location as a Favorite location or as a Temporary location?
+        <br>
+        Favorite locations are named locations that are remembered, and can be shared with other users.
+        <br>
+        Temporary locations are not named and are discarded when you next change your location.
+      </p>
+
+      <div id="LocationDialog_locationTypeRadioSet" class="buttonSet" data-controlee=".location-pane">
+        <input type="radio" id="LocationDialog_locationTypeRadio_Favorite" name="locationType" value="favorite" checked data-controlled-pane=".location-pane"><label for="LocationDialog_locationTypeRadio_Favorite">Favorite</label>
+        <span class="buttonset-text">or</span>
+        <input type="radio" id="LocationDialog_locationTypeRadio_Temporary" name="locationType" value="temporary"><label for="LocationDialog_locationTypeRadio_Temporary">Temporary</label>
+      </div>
+
+    </div>
+
+    <div class="show-for-create-general-step2 show-for-create-favorite show-for-update">
+
+      <div class="item location-pane">
+        <label for="locationDialogNameField">Name:</label>
+        <input type="text" id="locationDialogNameField" name="name" class="" value="" title="Please enter a name for this favorite location." placeholder="favorite name" maxlength="50">
+      </div>
+
+    </div>
+
+    <div class="show-for-create-general-step1 show-for-create-favorite show-for-update">
+
+      <p>
+        Choose your new location by its address (or its zip code, or its name), or you can enter the coordinates yourself.
+        <br>
+        You can even click around on the map itself to move the location.
+      </p>
+
+      <div id="LocationDialog_mechanismRadioSet" class="buttonSet" data-controlee=".mechanism-pane">
+        <input type="radio" id="LocationDialog_mechanismRadio_Address" name="mechanismType" value="address" checked data-controlled-pane=".mechanism-pane-address"><label for="LocationDialog_mechanismRadio_Address">Find by Address</label>
+        <span class="buttonset-text">or</span>
+        <input type="radio" id="LocationDialog_mechanismRadio_Coords" name="mechanismType" value="coords" data-controlled-pane=".mechanism-pane-coords"><label for="LocationDialog_mechanismRadio_Coords">Set Coordinates</label>
+      </div>
+
+      <div class="item mechanism-pane mechanism-pane-coords">
+        <label>Latitude:</label>
+        <input type="text" id="locationDialogLatitudeField" name="latitude" class="location required number" value="" title="Please enter a valid latitude value." placeholder="decimal latitude"/>
+        <label class="inboard">Longitude:</label>
+        <input type="text" id="locationDialogLongitudeField" name="longitude" class="location required number" value="" title="Please enter a valid longitude value." placeholder="decimal longitude"/>
+        <button type="button" id="LocationDialog_findMeButton"><img src="https://portal.anythingweather.com/aw-portal/public/images/icon-compact-locate.png" style="vertical-align: text-bottom;"> Find me!</button>
+      </div>
+
+      <div class="item mechanism-pane mechanism-pane-address">
+        <label>Address:</label>
+        <input type="search" id="locationDialogSearchField" class="" value="" placeholder="address, or zip code, or place name"/>
+        <button type="button" id="locationDialogSearchButton">Search</button>
+      </div>
+
+      <div id="locationDialogMapCanvas"></div>
+
+    </div>
+
+    <div class="buttonBar">
+      <div class="show-for-create-general-step1">
+        <button type="button" id="locationDialogNextButton">Next</button>
+      </div>
+      <div class="show-for-create-favorite show-for-update show-for-create-general-step2">
+        <button type="submit">OK</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+
+  $('#locationDialog').locationDialog({
+    formPrefix: 'location.',
+    contextPath: contextPath,
+    map: {
+      relocatable: true
+    }
+  });
+
+  $('#locationDialogSearchField').keypress(function(event){
+    if (event.which != 13) return true;
+    $('#locationDialogMapCanvas').mapify('geocode',$('#locationDialogSearchField').val());
+    return false;
+  });
+
+</script>
+<script type="text/javascript">
+//    _ ____  _        _ _        ____       _   _   _                 ____  _       _
+//   (_) ___|| |_ _ __(_) | _____/ ___|  ___| |_| |_(_)_ __   __ _ ___|  _ \(_) __ _| | ___   __ _
+//   | \___ \| __| '__| | |/ / _ \___ \ / _ \ __| __| | '_ \ / _` / __| | | | |/ _` | |/ _ \ / _` |
+//   | |___) | |_| |  | |   <  __/___) |  __/ |_| |_| | | | | (_| \__ \ |_| | | (_| | | (_) | (_| |
+//   |_|____/ \__|_|  |_|_|\_\___|____/ \___|\__|\__|_|_| |_|\__, |___/____/|_|\__,_|_|\___/ \__, |
+//                                                           |___/                           |___/
+
+var iStrikeSettingsDialog$;
+
+$(function(){
+
+  iStrikeSettingsDialog$ = $('#iStrikeSettingsDialog');
+  var dialog$ = iStrikeSettingsDialog$;
+  var form$ = $('form',dialog$).first();
+
+  dialog$.showFor = function(service,account,reloadPage){
+    form$.get(0).reset();
+        awPortal.populateForm(form$,service,'service');
+    $('span.timezone-display-name',form$).html(timeZoneNames[''+service.location.timeZoneId]);
+    $('.time-on-display:eq(0)',form$).html(toTimeDisplay(service.onTime1));
+    $('.time-on-display:eq(1)',form$).html(toTimeDisplay(service.onTime2));
+    $('.time-on-display:eq(2)',form$).html(toTimeDisplay(service.onTime3));
+    $('.time-on-display:eq(3)',form$).html(toTimeDisplay(service.onTime4));
+    $('.time-on-display:eq(4)',form$).html(toTimeDisplay(service.onTime5));
+    $('.time-on-display:eq(5)',form$).html(toTimeDisplay(service.onTime6));
+    $('.time-on-display:eq(6)',form$).html(toTimeDisplay(service.onTime7));
+    $('.time-off-display:eq(0)',form$).html(toTimeDisplay(service.offTime1));
+    $('.time-off-display:eq(1)',form$).html(toTimeDisplay(service.offTime2));
+    $('.time-off-display:eq(2)',form$).html(toTimeDisplay(service.offTime3));
+    $('.time-off-display:eq(3)',form$).html(toTimeDisplay(service.offTime4));
+    $('.time-off-display:eq(4)',form$).html(toTimeDisplay(service.offTime5));
+    $('.time-off-display:eq(5)',form$).html(toTimeDisplay(service.offTime6));
+    $('.time-off-display:eq(6)',form$).html(toTimeDisplay(service.offTime7));
+    $('[name="alert-ring-enabled"]').prop('checked',service.alertingThresholdAlert);
+    $('[name="detected-ring-enabled"]').prop('checked',service.alertingThresholdDetected);
+        $('.range-distance').attr('max',service.membershipLevel == 'HIGH' ? 50 : 25);
+        setUpSliders(service);
+        $('[name="service.alertingType"][value="' + service.alertingType + '"]').change();
+        $('.sibling-input-enabler').change();
+
+        $('[name$="-ring-enabled"]').change(function(){
+      $(this).closest('fieldset').find('.range-item').toggle($(this).prop('checked'));
+      $(this).closest('legend').find('.state').html($(this).prop('checked') ? 'set to ON':'set to OFF');
+    })
+    .change();
+
+        dialog$.dialog('option',{
+      title: 'iStrike settings for ' + service.subscriber.firstName + ' ' + service.subscriber.lastName
+    });
+    dialog$.data('reloadOnClose',reloadPage);
+    dialog$.dialog('open');
+  };
+
+  dialog$.dialog({
+    autoOpen: false,
+    closeOnEscape: true,
+    resizable: false,
+    modal: true,
+    title: 'Update iStrike settings',
+    width: 560,
+    open: function(){
+      if (!awPortal.isMobile() || awPortal.isTablet()) $(':input:enabled',form$).get(0).focus();
+    }
+  });
+
+  form$.validate({
+    errorElement: 'div',
+    submitHandler: function(){
+      if (!validateRanges()) return false;
+      if (!dialog$.find('[name="alert-ring-enabled"]').prop('checked')) dialog$.find('[name="service.alertingThresholdAlert"]').val(0);
+      if (!dialog$.find('[name="detected-ring-enabled"]').prop('checked')) dialog$.find('[name="service.alertingThresholdDetected"]').val(0);
+      form$.ajaxSubmit({
+        success: function(){
+//          form$.trigger('notify',{ title: 'Success', text: 'The iStrike service settings have been updated', status: 'success' });
+          dialog$.dialog('close');
+          window.location.reload();
+        },
+        error: function(){ /* messaging handled by global handler */ }
+      });
+      return true;
+    },
+    errorPlacement: function(error, element) {
+      error.appendTo(element.closest('.item'));
+    }
+  });
+
+  function setUpSliders(service) {
+
+    var onTimes = [service.onTime1,service.onTime2,service.onTime3,service.onTime4,service.onTime5,service.onTime6,service.onTime7];
+    var offTimes = [service.offTime1,service.offTime2,service.offTime3,service.offTime4,service.offTime5,service.offTime6,service.offTime7];
+
+    function updateTimeSlideDisplay(event,ui){
+      var values = ui.values;
+      var parent$ = $(this).closest('div.time-item');
+      parent$.find('span.time-on-display').html(toTimeDisplay(values[0]));
+      parent$.find('span.time-off-display').html(toTimeDisplay(values[1]));
+      parent$.find('input.on-time').val(values[0]);
+      parent$.find('input.off-time').val(values[1]);
+    }
+
+    $('#iStrikeSettingsDialog_PartEnabledTimes').find('div.slider').each(function(n){
+      $(this).slider({
+        min: 0,
+        max: 24 * 60,
+        step: 15,
+        range: true,
+        animate: true,
+        values: [onTimes[n],offTimes[n]],
+        slide: updateTimeSlideDisplay,
+        change: updateTimeSlideDisplay
+      });
+    });
+
+  }
+
+  function toTimeDisplay(value) {
+    return awPortal.toFixedWidth(Math.floor(value/60),2) + ':' + awPortal.toFixedWidth(value%60,2);
+  }
+
+  $('.increase-number-button')
+      .button({ text: false, icons: { primary: 'ui-icon-circle-triangle-n'} })
+      .click(function(){
+        var slider$ = $(this).siblings('.ui-slider');
+        var value = slider$.slider('option','value');
+        var max = slider$.slider('option','max');
+        var step = slider$.slider('option','step');
+        if ((value + step) <= max) slider$.slider('option','value',value + step);
+      });
+
+  $('.decrease-number-button')
+      .button({ text: false, icons: { primary: 'ui-icon-circle-triangle-s'} })
+      .click(function(){
+        var slider$ = $(this).siblings('.ui-slider');
+        var value = slider$.slider('option','value');
+        var min = slider$.slider('option','min');
+        var step = slider$.slider('option','step');
+        if ((value - step) >= min) slider$.slider('option','value',value - step);
+      });
+
+    var numberInputsOK = awPortal.fixupNumberInputs();
+  if (!numberInputsOK) dialog$.addClass('showSliderBumpButtons');
+
+    $('[name="service.alertingType"]').change(function(){
+    var type = $(this).val();
+        $('#iStrikeSettingsDialog').attr('data-alerting-target-detail-type',type);
+        $('.variable-on-alerting-target-detail :input').prop('disabled',true);
+    $('.visible-on-alerting-target-detail-type-' + type.toLowerCase() + ' :input').prop('disabled',false);
+  });
+
+    $('.sibling-input-enabler').change(function(){
+    $('.all-clear-display',$(this).closest('.item')).prop("disabled",!$(this).prop("checked"));
+  });
+
+    $('[type="number"]').prop('readonly',false);
+
+  $('[name="service.alertingTargetTextAddress"]').keypress(function(event){
+    return (event.which >= 48 && event.which <= 57);
+  });
+
+  function validateRanges() {
+
+    var isSiren = dialog$.find('[name="service.alertingType"]:checked').val() === "SIREN";
+
+    var alertEnabled = dialog$.find('[name="alert-ring-enabled"]').is(':checked');
+    var detectedEnabled = dialog$.find('[name="detected-ring-enabled"]').is(':checked') && !isSiren;
+
+    var warning$ = dialog$.find('[name="service.alertingThresholdWarning"]');
+    var alert$ = dialog$.find('[name="service.alertingThresholdAlert"]');
+    var detected$ = dialog$.find('[name="service.alertingThresholdDetected"]');
+
+    var warningValue = window.parseInt(warning$.val());
+    var alertValue = window.parseInt(alert$.val());
+    var detectedValue = isSiren ? Number.MAX_VALUE : window.parseInt(detected$.val());
+
+    var messages = [];
+
+    if (alertEnabled) {
+      if (alertValue <= warningValue) messages.push("The alert distance must be greater than the warning distance.");
+    }
+    if (detectedEnabled) {
+      if (alertEnabled) {
+        if (detectedValue <= alertValue) messages.push("The detected distance must be greater than the alert distance.")
+      }
+      else {
+        if (detectedValue <= warningValue) messages.push("The detected distance must be greater than the warning distance.")
+      }
+    }
+
+    if (messages.length !== 0) {
+      $('body').trigger('notify',{ text: messages.join(' '), status: "error", time: 10000 });
+    }
+
+    return messages.length === 0;
+
+  }
+
+});
+
+var timeZoneNames = {
+  '35':'Hawaii - Aleutian Standard Time' ,
+  '2':'Alaskan Time' ,
+  '52':'Pacific Time' ,
+  '43':'Mountain Time' ,
+  '19':'Central Time' ,
+  '26':'Eastern Time' ,
+  '6':'Atlantic Time' ,
+  '68':'Arizona Time' ,
+  '67':'East Indiana Time' ,
+  '31':'(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London' 
+}
+
+</script>
+
+<!--suppress HtmlUnknownTag -->
+<style type="text/css">
+  #iStrikeSettingsDialog { padding: 32px; }
+  #iStrikeSettingsDialog div.item { margin-bottom: 1em; }
+  #iStrikeSettingsDialog div.item label { display: inline; }
+
+  #iStrikeSettingsDialog_alertFields div { margin-bottom: 0.5em; }
+
+  #iStrikeSettingsDialog_alertFields input { margin-left: 16px; }
+  #iStrikeSettingsDialog_thresholdSlider { margin: 16px; }
+  #iStrikeSettingsDialog_PartRanges input[type="text"] { width: 5em; margin-left: 5em; border: 1px silver solid; text-align: center; }
+
+  #iStrikeSettingsDialog_updateFrequencyItems { margin-top: 3px;}
+  #iStrikeSettingsDialog_updateFrequencyFields div.slider { display: inline-block; width: 264px; margin-right: 12px;}
+  #iStrikeSettingsDialog_updateFrequencyFields span.updateFrequencyName { display: inline-block; width: 80px; color: #777; padding-left: 0.5em; }
+  div.updateFrequencyItem { margin-bottom: 3px; }
+  .numeric-short { width: 3em; }
+
+  #iStrikeSettingsDialog_allClearItems { margin-top: 3px;}
+  #iStrikeSettingsDialog_allClearFields div.slider { display: inline-block; width: 264px; margin-right: 12px;}
+  #iStrikeSettingsDialog_allClearFields span.allClearName { display: inline-block; width: 80px; color: #777; padding-left: 0.5em; }
+  div.allClearItem { margin-bottom: 3px; }
+  .all-clear-display { width: 3em; }
+
+  #iStrikeSettingsDialog_timeItems { margin-top: 3px;}
+  #iStrikeSettingsDialog_PartEnabledTimes div.slider { display: inline-block; width: 256px;}
+  #iStrikeSettingsDialog_PartEnabledTimes span.day-name { display: inline-block; width: 80px; color: #777; padding-left: 0.5em; }
+  div.time-item { margin-bottom: 0.67em; }
+  div.time-item:first-child { margin-top: 0.75em; }
+
+  .increase-number-button,.decrease-number-button { height: 1.75em; width: 1.75em !important; vertical-align: middle; cursor: pointer; }
+
+  #iStrikeSettingsDialog span.interval-display { display: inline-block; float: right; }
+
+  .time-scale { font-size: 0.75em; border: solid #ddd; border-width: 0 0 1px 0; padding: 0 0 0.5em 2.5em; margin-bottom: 1.5em; }
+  .time-scale span { margin-left: 3.3em; }
+  .time-scale span:nth-child(2) { margin-left: 3.0em; }
+  .time-scale span:first-child { margin-left: 0; }
+
+  .slider-bump-button { display: none; }
+  .showSliderBumpButtons .slider-bump-button { display: inline-block; }
+
+  #iStrikeSettingsDialog .ui-slider-handle { height: 1.5em !important; width: 2em !important; border-radius: 0.67em !important; margin-top: -0.25em !important; }
+
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    div.time-item { margin-bottom: 0.75em; }
+  }
+
+  #iStrikeSettingsDialog fieldset { background: white; border-color: #c8d9e8; }
+  #iStrikeSettingsDialog legend { background-color: white; border: 1px solid #c8d9e8; color: #707f8d; margin-left: 0em; }
+
+  #iStrikeSettingsDialog fieldset div.item { margin-bottom: 0.5em !important; }
+
+  #iStrikeSettingsDialog div.item.slider-item label:first-child { width: 7em; display: inline-block; }
+  #iStrikeSettingsDialog div.item.slider-item .slider { width: 50%; display: inline-block; margin: 0 1em 0 0; }
+
+  #iStrikeSettingsDialog div.range-item div.item { margin-bottom: 0.5em !important; }
+  #iStrikeSettingsDialog div.range-item input[type="number"] { font-size: 0.8em; }
+
+  #alertingTargetDetailGroup input { margin-left: 1em; }
+
+  .variable-on-alerting-target-detail { display: none; margin-top: 1em; }
+
+  [data-alerting-target-detail-type="EMAIL"] .visible-on-alerting-target-detail-type-email { display: inherit; }
+  [data-alerting-target-detail-type="TEXT"] .visible-on-alerting-target-detail-type-text { display: inherit; }
+  [data-alerting-target-detail-type="SIREN"] .visible-on-alerting-target-detail-type-siren { display: inherit; }
+  [data-alerting-target-detail-type="PHONE"] .visible-on-alerting-target-detail-type-phone { display: inherit; }
+
+  [data-alerting-target-detail-type="EMAIL"] span.visible-on-alerting-target-detail-type-email { display: inline; }
+  [data-alerting-target-detail-type="TEXT"] span.visible-on-alerting-target-detail-type-text { display: inline; }
+  [data-alerting-target-detail-type="SIREN"] span.visible-on-alerting-target-detail-type-siren { display: inline; }
+  [data-alerting-target-detail-type="PHONE"] span.visible-on-alerting-target-detail-type-phone { display: inline; }
+
+  .ui-slider-range.ui-widget-header { background-image: none; background-color: #da3c40; }
+
+  [name="service.alertingTargetEmail"] { width: 24em; }
+
+  .timezone-display-name { text-align: right; display: inline-block;}
+
+  img.ring-image { border: 1px solid silver; width: 74px; height: 74px; float: left; margin-right: 0.5em; }
+
+</style>
+
+<div id="iStrikeSettingsDialog">
+
+  <form action="https://portal.anythingweather.com/aw-portal/istrike/updateistrikeserivcesettings" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" class="fancy" ><input type="hidden" name="authenticityToken" value="13eb82581429c63b791ed5e698ddc1c40490ebd0">
+
+  <input type="hidden" name="service.id">
+
+  <div class="item" title="Enables or disables this service without changing the settings">
+    <label>iStrike alerts active?</label> &nbsp;
+    <label><input type="radio" name="service.active" value="true"> yes</label>
+    <label><input type="radio" name="service.active" value="false"> no</label>
+  </div>
+
+  <fieldset class="alerting-target-pane">
+    <legend>Send alerts to...</legend>
+
+    <div class="item" id="alertingTargetDetailGroup">
+      <!--label>Type:</label-->
+      <label title="Sends alerts to an e-mail address"><input type="radio" name="service.alertingType" value="EMAIL"> e-mail</label>
+      <label title="Sends alerts as a text message to mobile device"><input type="radio" name="service.alertingType" value="TEXT"> text message</label>
+      <label title="Alerts trigger an Remote Alerting Service siren"><input type="radio" name="service.alertingType" value="SIREN"> siren/strobe</label>
+          </div>
+
+    <div class="variable-on-alerting-target-detail visible-on-alerting-target-detail-type-email">
+      <div class="item">
+        <label>
+          E-mail:
+          <input type="text" name="service.alertingTargetEmail" title="Please enter a valid e-mail address" placeholder="email address" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$">
+        </label>
+      </div>
+    </div>
+
+    <div class="variable-on-alerting-target-detail visible-on-alerting-target-detail-type-text">
+      <div class="item">
+        <select id="textingCarrier" name="service.alertingTargetCarrier.id" title="Please choose your texting carrier">
+                                            <option value="1">T-Mobile</option>                      <option value="2">Virgin Mobile</option>                      <option value="3">Cingular</option>                      <option value="4">Sprint</option>                      <option value="5">Verizon</option>                      <option value="6">Nextel</option>                      <option value="8">Alltel</option>                      <option value="9">AT&amp;T</option>                      <option value="10">US Cellular</option>                      <option value="11">Cincinatti Bell</option>                      <option value="12">Cellular South</option>                      <option value="13">Contact Wireless</option>                      <option value="14">Boost Mobile</option>                  </select>
+        <label>
+          Text #:
+          <input type="text" name="service.alertingTargetTextAddress" title="Please enter the 10 or 11 digit mobile device number to text" placeholder="texting phone number" required pattern="[0-9]{10,11}"> (10 or 11 digits)
+        </label>
+      </div>
+    </div>
+
+    <div class="variable-on-alerting-target-detail visible-on-alerting-target-detail-type-siren">
+      <div class="item">
+        <label>
+          Siren IP address:
+          <input type="text" name="service.alertingTargetSirenIP" title="Please enter the IP address of the siren" placeholder="siren address" required pattern="^(([^@:]+:[^@:]+@)?\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})(:\d*)?$">
+        </label>
+      </div>
+    </div>
+
+    
+  </fieldset>
+
+  <div class="item" id="iStrikeSettingsDialog_PartRanges">
+
+    <fieldset class="range-item">
+      <legend>
+        <span class=" variable-on-alerting-target-detail visible-on-alerting-target-detail-type-email visible-on-alerting-target-detail-type-text visible-on-alerting-target-detail-type-phone">Warning</span>
+        <span class=" variable-on-alerting-target-detail visible-on-alerting-target-detail-type-siren">Siren</span>
+        range (inner ring)</legend>
+      <div class="range-item">
+
+        <img src="https://portal.anythingweather.com/aw-portal/public/images/settings-rings-inner.png" class="ring-image">
+
+        <div class="item">
+          <label>Distance:
+            <input type="number" class="numeric-short range-distance" min="1" max="25" step="1" name="service.alertingThresholdWarning" required title="Please enter the warning distance in miles">
+            <span>miles</span>
+          </label>
+        </div>
+
+        <div class="item">
+          <label>Update every:
+            <input type="number" class="numeric-short" min="1" max="60" step="1" name="service.updateFrequencyTimerWarning" required title="Please enter the warning update frequency in minutes">
+            <span>minutes</span>
+          </label>
+        </div>
+
+        <div class="item">
+          <label>
+            <input type="checkbox" name="service.sendAllClearAlertWarning" class="sibling-input-enabler" title="Enables or disables warning all clear notifications">
+            Issue all clear after
+          </label>
+          <input type="number" class="all-clear-display" min="1" max="60" step="1" name="service.allClearTimerWarning" required title="Please enter the warning all clear interval in minutes">
+          <label> minutes </label>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+    <fieldset class="range-item">
+      <legend>
+        <input type="checkbox" name="alert-ring-enabled" title="Enable or disable this range">
+        <span class="variable-on-alerting-target-detail visible-on-alerting-target-detail-type-email visible-on-alerting-target-detail-type-text visible-on-alerting-target-detail-type-phone">Alert</span>
+        <span class="variable-on-alerting-target-detail visible-on-alerting-target-detail-type-siren">Strobe</span>
+        range (middle ring, <span class="state"></span>)
+      </legend>
+
+      <div class="range-item">
+
+        <img src="https://portal.anythingweather.com/aw-portal/public/images/settings-rings-middle.png" class="ring-image">
+
+        <div class="item">
+          <label>Distance:
+            <input type="number" class="numeric-short range-distance" min="1" max="25" step="1" name="service.alertingThresholdAlert" required title="Please enter the alert distance in miles">
+            <span>miles</span>
+          </label>
+        </div>
+
+        <div class="item variable-on-alerting-target-detail visible-on-alerting-target-detail-type-email visible-on-alerting-target-detail-type-text visible-on-alerting-target-detail-type-phone">
+          <label>Update every:
+            <input type="number" class="numeric-short" min="1" max="60" step="1" name="service.updateFrequencyTimerAlert" required title="Please enter the alert update frequency in minutes">
+            <span>minutes</span>
+          </label>
+        </div>
+
+        <div class="item">
+          <label>
+            <input type="checkbox" name="service.sendAllClearAlertAlert" class="sibling-input-enabler" title="Enables or disables alert all clear notifications">
+            Issue all clear after
+          </label>
+          <input type="number" class="all-clear-display" min="1" max="60" step="1" name="service.allClearTimerAlert" required title="Please enter the alert all clear interval in minutes">
+          <label> minutes </label>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+    <fieldset class="range-item variable-on-alerting-target-detail visible-on-alerting-target-detail-type-email visible-on-alerting-target-detail-type-text visible-on-alerting-target-detail-type-phone">
+      <legend>
+        <input type="checkbox" name="detected-ring-enabled" title="Enable or disable this range">
+        Detected range (furthest ring, <span class="state"></span>)
+      </legend>
+
+      <div class="range-item">
+
+        <img src="https://portal.anythingweather.com/aw-portal/public/images/settings-rings-outer.png" class="ring-image">
+
+        <div class="item">
+          <label>Distance:
+            <input type="number" class="numeric-short range-distance" min="1" max="25" step="1" name="service.alertingThresholdDetected" required title="Please enter the detected distance in miles">
+            <span>miles</span>
+          </label>
+        </div>
+
+        <div class="item">
+          <label>Update every:
+            <input type="number" class="numeric-short" min="1" max="60" step="1" name="service.updateFrequencyTimerDetected" required title="Please enter the detected update frequency in minutes">
+            <span>minutes</span>
+          </label>
+        </div>
+
+        <div class="item">
+          <label>
+            <input type="checkbox" name="service.sendAllClearAlert" class="sibling-input-enabler" title="Enables or disables detected all clear notifications">
+            Issue all clear after
+          </label>
+          <input type="number" class="all-clear-display" min="1" max="60" step="1" name="service.allClearTimerDetected" required title="Please enter the detected all clear interval in minutes">
+          <label> minutes </label>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+  </div>
+
+  <fieldset>
+    <legend>Daily alert interval</legend>
+
+    <div class="item" id="iStrikeSettingsDialog_PartEnabledTimes">
+
+      <div id="iStrikeSettingsDialog_timeItems">
+
+        <div class="time-scale">
+          <span>Time</span>
+          <span>00:00</span>
+          <span>06:00</span>
+          <span>12:00</span>
+          <span>18:00</span>
+          <span>24:00</span>
+          <span class="timezone-display-name"></span>
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Sunday">
+          <span class="day-name">Sunday</span> <div class="slider" id="iStrikeSettingsDialog_sunSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime1" class="on-time">
+          <input type="hidden" name="service.offTime1" class="off-time">
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Monday">
+          <span class="day-name">Monday</span> <div class="slider" id="iStrikeSettingsDialog_monSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime2" class="on-time">
+          <input type="hidden" name="service.offTime2" class="off-time">
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Tuesday">
+          <span class="day-name">Tuesday</span> <div class="slider" id="iStrikeSettingsDialog_tueSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime3" class="on-time">
+          <input type="hidden" name="service.offTime3" class="off-time">
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Wednesday">
+          <span class="day-name">Wednesday</span> <div class="slider" id="iStrikeSettingsDialog_wedSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime4" class="on-time">
+          <input type="hidden" name="service.offTime4" class="off-time">
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Thursday">
+          <span class="day-name">Thursday</span> <div class="slider" id="iStrikeSettingsDialog_thuSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime5" class="on-time">
+          <input type="hidden" name="service.offTime5" class="off-time">
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Friday">
+          <span class="day-name">Friday</span> <div class="slider" id="iStrikeSettingsDialog_friSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime6" class="on-time">
+          <input type="hidden" name="service.offTime6" class="off-time">
+        </div>
+
+        <div class="time-item" title="Specifies the active times for alerting on Saturday">
+          <span class="day-name">Saturday</span> <div class="slider" id="iStrikeSettingsDialog_satSlider"></div>
+          <span class="interval-display"><span class="time-on-display"></span> - <span class="time-off-display"></span></span>
+          <input type="hidden" name="service.onTime7" class="on-time">
+          <input type="hidden" name="service.offTime7" class="off-time">
+        </div>
+
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="buttonBar">
+    <input type="submit" value="Update" title="Updates your iStrike service with the specified values">
+  </div>
+
+  <div class="busyIndicator"><img src="https://portal.anythingweather.com/aw-portal/public/images/working.gif" alt="Busy"></div>
+
+  
+</form>
+</div>
+
+      </div>
+    </div>
+
+    <footer>
+    <div>
+  <a href="http://www.anythingweather.com" target="_blank">AnythingWeather Communications, Inc. 41701 Corporate Way, Ste. 6, Palm Desert, CA 92260</a><br>
+  Copyright 1999-2012 AnythingWeather.com
+</div>
+    </footer>
+
+        <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/jquery.gritter.js"></script>
+<script>
+  $(function(){
+
+    $('nav li').click(function(){ window.location = $('a',this).attr('href'); });
+
+    $('#logoutButton')
+      .button({ icons: { primary: 'ui-icon-locked' } })
+      .click(function(){ window.location = '/aw-portal/logout'; });
+
+    $('#shoppingCartButton')
+      .button({ icons: { primary: 'ui-icon-cart'} })
+      .click(function(){ window.location = '/customer/account/login'; });
+
+    
+    
+    
+  });
+</script>
+
+  </body>
+</html>
+<!--
+AnythingWeather Service Portal 1.9.1 Production
+http://localhost:8080/aw-webapi
+-->

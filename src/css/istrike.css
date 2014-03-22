@@ -1,0 +1,81 @@
+/*istrike CSS for phone in vertical origin*/
+@media only screen and (max-width: 800px) {
+    #istrike-map-header-panel {
+        left: 0;
+        width: 60%;
+    }
+
+    #istrike-map-header-panel .dk_container {
+        font-size: 12px;
+    }
+
+    .multi-service a.dk_toggle {
+        width: auto;
+        padding: 2px 20px 2px 2px;
+        word-break: break-all;
+    }
+
+    .dk_toggle:after {
+        right: 6px;
+    }
+
+    .dk_mobile select {
+        position: absolute;
+        top: -99999em;
+        visibility: hidden
+    }
+
+    .dk_options a {
+        padding: 5px 2px;
+    }
+    /*this is not cool for the footer filter*/
+    #istrike-strike-age-pane, #istrike-ranges-legend-pane {
+        position: relative;
+    }
+
+    #istrike-age-buttonset {
+        width: 100%;
+        white-space: nowrap;
+    }
+    #istrike-age-buttonset label {
+        width: 16%;
+    }
+
+    #istrike-ranges-legend-buttonset label {
+        width: 24%;
+    }
+    .ui-button-text-only .ui-button-text {
+        padding: .2em;
+    }
+
+    #istrike-timestamp-pane {
+        position: absolute;
+        bottom: 34px;
+        width: 100%;
+        left: 0;
+        text-shadow: 1px 1px #C0C0C0;
+        font-size: 10px;
+    }
+
+    img.busyIndicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media screen and (max-device-width: 320px) and (device-aspect-ratio: 2/3) {
+    #istrike-map-header-panel {
+        left: 17%;
+        width: 49%;
+    }
+
+    #istrike-timestamp-pane {
+        position: absolute;
+        bottom: 34px;
+        width: 82%;
+        left: 17%;
+        text-shadow: 1px 1px #C0C0C0;
+        font-size: 10px;
+    }
+}
+

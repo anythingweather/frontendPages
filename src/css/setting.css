@@ -1,0 +1,8 @@
+/*login CSS for phone in vertical origin*/
+@media only screen and (max-device-width: 320px) and (max-device-width: 360px) {
+    fieldset {
+        width: auto;
+        margin: 0 0.5em 0.8em 0.5em;
+        border-radius: 1em;
+    }
+}

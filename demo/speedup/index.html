@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home page</title>
+        <title>Welcome to WeatherCenter</title>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
         <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -13,16 +13,17 @@
         <!-- lib -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-        <!-- base css & js -->
+        <!-- aw-portal css & js -->
         <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/default/jquery-ui.custom.css" charset="utf-8" ></link>
         <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/main.css" charset="utf-8" ></link>
         <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/desktop.css" charset="utf-8" ></link>
         <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/jquery.gritter.css" charset="utf-8" ></link>
         <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/bubbles.css" charset="utf-8" ></link>
         <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/tip-tip.css" charset="utf-8" ></link>
+        <script>var contextPath = '/aw-portal/';</script>
+        <!-- base css for login -->
         <link rel="stylesheet" href="../src/css/login.css" />
         <link rel="stylesheet" href="../src/css/base.css" />
-        <script>var contextPath = '/aw-portal/';</script>
     </head>
     <body>
         <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to
@@ -47,7 +48,8 @@
                 <img src="https://portal.anythingweather.com/aw-portal/public/images/aw-logo-large.png">
             </div>
             <fieldset id="loginForm">
-                <form action="https://portal.anythingweather.com/aw-portal/login?x-http-method-override=POST" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+                <!-- <form action="https://portal.anythingweather.com/aw-portal/login?x-http-method-override=POST" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded"> -->
+                <form action="account.html" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
                     <input type="hidden" name="authenticityToken" value="13eb82581429c63b791ed5e698ddc1c40490ebd0">
 
                     <input type="hidden" name="redirectURL" value="https://portal.anythingweather.com/aw-portal/">
@@ -75,7 +77,7 @@
             <a href="http://www.anythingweather.com" target="_blank">AnythingWeather Communications, Inc. 41701 Corporate Way, Ste. 6, Palm Desert, CA 92260</a> <br>Copyright 1999-2012 AnythingWeather.com
         </div>
     </footer>
-    <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/modernizr-2.5.3.min.js"></script>
+        <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/modernizr-2.5.3.min.js"></script>
         <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.forms.js"></script>
         <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.validate.js"></script>
         <script src="https://portal.anythingweather.com/aw-portal/public/javascripts/tip-tip.min.js"></script>
