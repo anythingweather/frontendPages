@@ -1,0 +1,776 @@
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" ng-app> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" ng-app> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Forecasts for demo@rightweather.com</title>
+    <meta name="description" content="Forecasts for demo@rightweather.com">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script>var contextPath = '/aw-portal/';</script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/es5-shim.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/right/jquery-ui.custom.css" charset="utf-8" ></link>
+    <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/main.css" charset="utf-8" ></link>
+      <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/desktop.css" charset="utf-8" ></link>
+  <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/jquery.gritter.css" charset="utf-8" ></link>
+  <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/bubbles.css" charset="utf-8" ></link>
+  <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/tip-tip.css" charset="utf-8" ></link>
+      <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/ff-controls.css" charset="utf-8" ></link>
+<!--suppress HtmlUnknownTag -->
+<style>
+  #forecastDisplay { padding: 2em; }
+
+  table { margin: 0 auto 2em; border: 1px solid silver;  }
+  table th { border-bottom: 1px solid #ccc; padding: 0.5em; background-color: #edf3f8; }
+  table td { text-align: center; padding: 0.5em 1em; }
+  table td:first-child { text-align: left; font-weight: bold; color: silver; white-space: nowrap;}
+
+  table.daily { width: 92%; }
+
+  td.aside { text-align: center !important; }
+
+  table.hourly { width: 92%; }
+  table.hourly tfoot { border-top: 1px solid #ccc; background-color: #f8f8f8; }
+  table.hourly .nextButton { float: right; }
+  button {cursor: pointer; }
+  button[disabled] { opacity: 0.5; cursor: auto; }
+
+  .forecast-service { border: 1px solid silver; border-radius: 2em; margin: 1em 0 0.75em 0; }
+  
+  #forecastSelectorPane { text-align: right; padding-right: 4em; }
+
+  .forecast-service h2 { margin: 0 0 1em 0; padding: 0.5em 1em; }
+
+  .forecast-service h2 button { display: none; }
+
+  label { color: #555; font-weight: bold; display: inline-block; }
+
+  tr:nth-child(2n) td { background-color: #fafafa; }
+
+
+  
+</style>
+    <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/right/branding.css" charset="utf-8" ></link>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/modernizr-2.5.3.min.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.forms.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.validate.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/tip-tip.min.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/aw-portal.js"></script>
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.forms.js"></script>
+<script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/jquery.validate.min.js"></script>
+<script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/kato.formatDate.js"></script>
+<script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/core/kato.mapify.js"></script>
+<script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/ff-controls.js"></script>
+<script>
+  $(function(){
+
+    $('body').on('click','.backButton,.nextButton',function(){
+      var form = $(this).closest('form');
+      var minHour = parseInt($(this).attr('data-min-hour'));
+      var maxHour = parseInt($(this).attr('data-max-hour'));
+      var hourCount = maxHour - minHour + 1;
+      if ($(this).hasClass('backButton')) {
+        minHour = minHour - hourCount;
+        if (minHour < 0) minHour = 0;
+        maxHour = minHour + hourCount - 1;
+      }
+      else {
+        minHour = minHour + hourCount;
+        maxHour = minHour + hourCount - 1;
+      }
+      $('[name="filters.minHourNumber"]',form).val(minHour);
+      $('[name="filters.maxHourNumber"]',form).val(maxHour);
+      $(form).ajaxSubmit({
+        url: '/aw-portal/forecast/hourlyforecast',
+        dataType: 'html',
+        success: function(fragment){
+          $(form).closest('.hourly-forecast-pane').html(fragment);
+        }
+      });
+    });
+
+    
+  });
+</script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-2987619-1', 'hailwatch.com');
+      ga('send', 'pageview');
+    </script>
+    <!-- Start CSS for istrike -->
+    <link rel="stylesheet" href="../src/css/base.css" />
+    <link rel="stylesheet" href="../src/css/forecastdisplay.css" />
+    <!-- End CSS for istrike -->
+  </head>
+
+  <body data-branding="right">
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to
+    a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome
+    Frame</a> to experience this site.</p><![endif]-->
+
+    <div id="masthead">
+      <header>
+      <div id="banner">
+  <h1>
+          <img src="https://portal.anythingweather.com/aw-portal/public/images/partners/right/logo.png" height="40" border="0"></a>
+            <span>Demo's Weather Center</span>
+  </h1>
+</div>
+
+  <div id="logoutPane">
+        <button type="button" id="logoutButton" title="Log out of the service" class="tip-tip">Logout</button>
+  </div>
+
+  <nav>
+        <ul>
+      <li class="current">
+        <a href="settings.html">
+          <span class="full">Settings</span>
+          <span class="compact"><img src="https://portal.anythingweather.com/aw-portal/public/images/nav-icon-compact-settings.png"></span>
+        </a>
+      </li>
+              <li class="">
+          <a href="istrike-service.html">
+            <span class="full">iStrike</span>
+            <span class="compact"><img src="https://portal.anythingweather.com/aw-portal/public/images/nav-icon-compact-istrike.png"></span>
+          </a>
+        </li>
+                  <li class="">
+        <a href="forecastdisplay.html">
+          <span class="full">Forecast</span>
+          <span class="compact"><img src="https://portal.anythingweather.com/aw-portal/public/images/nav-icon-compact-forecast.png"></span>
+        </a>
+      </li>
+                        
+    </ul>
+  </nav>
+
+      </header>
+      <div id="mastheadGutter"></div>
+    </div>
+
+    <div role="main">
+      <div id="partialContent">
+        <div id="forecastDisplay">
+
+  
+    
+    <div data-forecast-service='{"id":183,"subscriberId":4724,"serviceLevel":"PREMIUM","locationType":"USL","location":"60379","title":"Right Weather in Providence, Rhode Island"}' class="forecast-service" id="service-183">
+
+      <h2>Premium forecast for Right Weather in Providence, Rhode Island</h2>
+
+      <div class="forecast-pane">
+
+                <div class="daily-forecast-pane">
+                      <table class="daily premium">
+
+      <thead>
+    <tr>
+      <th>Daily forecast</th>
+      <th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th><th>Day 5</th><th>Day 6</th><th>Day 7</th>    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <td>Date</td>
+              <td>Tuesday<br>Mar 25</td>
+              <td>Wednesday<br>Mar 26</td>
+              <td>Thursday<br>Mar 27</td>
+              <td>Friday<br>Mar 28</td>
+              <td>Saturday<br>Mar 29</td>
+              <td>Sunday<br>Mar 30</td>
+              <td>Monday<br>Mar 31</td>
+          </tr>
+
+    
+    <tr>
+      <td>High temperature</td>
+              <td>
+          40&deg;
+        </td>
+              <td>
+          37&deg;
+        </td>
+              <td>
+          42&deg;
+        </td>
+              <td>
+          50&deg;
+        </td>
+              <td>
+          47&deg;
+        </td>
+              <td>
+          46&deg;
+        </td>
+              <td>
+          50&deg;
+        </td>
+          </tr>
+
+    <tr>
+      <td>Low temperature</td>
+          <td>
+          &mdash;
+      </td>
+          <td>
+          24&deg;
+      </td>
+          <td>
+          19&deg;
+      </td>
+          <td>
+          33&deg;
+      </td>
+          <td>
+          37&deg;
+      </td>
+          <td>
+          35&deg;
+      </td>
+          <td>
+          31&deg;
+      </td>
+        </tr>
+
+    <tr>
+      <td>Wind peak (mph)</td>
+          <td>
+        16
+      </td>
+          <td>
+        32
+      </td>
+          <td>
+        23
+      </td>
+          <td>
+        25
+      </td>
+          <td>
+        16
+      </td>
+          <td>
+        27
+      </td>
+          <td>
+        20
+      </td>
+        </tr>
+
+    <tr>
+      <td>Precip. probability</td>
+              <td>
+          0%
+        </td>
+              <td>
+          69%
+        </td>
+              <td>
+          0%
+        </td>
+              <td>
+          54%
+        </td>
+              <td>
+          52%
+        </td>
+              <td>
+          56%
+        </td>
+              <td>
+          0%
+        </td>
+          </tr>
+
+    <tr>
+      <td>Precip. total (in)</td>
+          <td>
+        0.00"
+      </td>
+          <td>
+        0.33"
+      </td>
+          <td>
+        0.00"
+      </td>
+          <td>
+        0.21"
+      </td>
+          <td>
+        0.29"
+      </td>
+          <td>
+        0.29"
+      </td>
+          <td>
+        0.00"
+      </td>
+        </tr>
+
+    <tr>
+      <td>Evapo. total (in)</td>
+          <td>
+        0.13"
+      </td>
+          <td>
+        0.10"
+      </td>
+          <td>
+        0.16"
+      </td>
+          <td>
+        0.09"
+      </td>
+          <td>
+        0.07"
+      </td>
+          <td>
+        0.12"
+      </td>
+          <td>
+        0.17"
+      </td>
+        </tr>
+
+  </tbody>
+  </table>
+                            </div>
+
+                <div class="hourly-forecast-pane">
+                      
+<form action="https://portal.anythingweather.com/aw-portal/forecast/hourlyforecast" method="get" class="hourlyForecastForm" data-service="{&quot;id&quot;:183,&quot;subscriberId&quot;:4724,&quot;serviceLevel&quot;:&quot;PREMIUM&quot;,&quot;locationType&quot;:&quot;USL&quot;,&quot;location&quot;:&quot;60379&quot;,&quot;title&quot;:&quot;Right Weather in Providence, Rhode Island&quot;}">
+
+  <input type="hidden" name="serviceId" value="183">
+
+  <input type="hidden" name="filters.locationType" value="USL">
+  <input type="hidden" name="filters.location" value="60379">
+  <input type="hidden" name="filters.serviceLevel" value="PREMIUM">
+  <input type="hidden" name="filters.minHourNumber" value="1">
+  <input type="hidden" name="filters.maxHourNumber" value="8">
+  <input type="hidden" name="totalHourCount" value="176">
+
+  <table class="hourly premium">
+
+            <thead>
+      <tr>
+        <th colspan="9">Hourly forecast</th>
+      </tr>
+      <tr>
+        <th>Tuesday<br>March 25, 2014</th>
+                  <th>Hour 1<br>06:00 AM</th>
+                  <th>Hour 2<br>07:00 AM</th>
+                  <th>Hour 3<br>08:00 AM</th>
+                  <th>Hour 4<br>09:00 AM</th>
+                  <th>Hour 5<br>10:00 AM</th>
+                  <th>Hour 6<br>11:00 AM</th>
+                  <th>Hour 7<br>12:00 PM</th>
+                  <th>Hour 8<br>01:00 PM</th>
+              </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+      <tr>
+        <td>Average temp</td>
+                  <td>23&deg;
+</td>
+                  <td>23&deg;
+</td>
+                  <td>24&deg;
+</td>
+                  <td>28&deg;
+</td>
+                  <td>31&deg;
+</td>
+                  <td>34&deg;
+</td>
+                  <td>36&deg;
+</td>
+                  <td>37&deg;
+</td>
+              </tr>
+
+      <td>Max temp (last hour)</td>
+              <td>25&deg;
+</td>
+              <td>24&deg;
+</td>
+              <td>25&deg;
+</td>
+              <td>28&deg;
+</td>
+              <td>32&deg;
+</td>
+              <td>35&deg;
+</td>
+              <td>37&deg;
+</td>
+              <td>38&deg;
+</td>
+            </tr>
+
+      <tr>
+        <td>Min temp (last hour)</td>
+                  <td>20&deg;
+</td>
+                  <td>20&deg;
+</td>
+                  <td>23&deg;
+</td>
+                  <td>24&deg;
+</td>
+                  <td>28&deg;
+</td>
+                  <td>31&deg;
+</td>
+                  <td>34&deg;
+</td>
+                  <td>36&deg;
+</td>
+              </tr>
+
+      <tr>
+        <td>Dew point</td>
+                  <td>2&deg;
+</td>
+                  <td>3&deg;
+</td>
+                  <td>3&deg;
+</td>
+                  <td>3&deg;
+</td>
+                  <td>2&deg;
+</td>
+                  <td>2&deg;
+</td>
+                  <td>3&deg;
+</td>
+                  <td>4&deg;
+</td>
+              </tr>
+
+      <tr>
+        <td>Relative humidity</td>
+                  <td>40%
+</td>
+                  <td>41%
+</td>
+                  <td>38%
+</td>
+                  <td>33%
+</td>
+                  <td>28%
+</td>
+                  <td>25%
+</td>
+                  <td>24%
+</td>
+                  <td>24%
+</td>
+              </tr>
+
+      <tr>
+        <td>Surface wind speed (mph)</td>
+                  <td>4
+</td>
+                  <td>4
+</td>
+                  <td>4
+</td>
+                  <td>5
+</td>
+                  <td>6
+</td>
+                  <td>6
+</td>
+                  <td>8
+</td>
+                  <td>10
+</td>
+              </tr>
+
+      <tr>
+        <td>80m wind speed (mph)</td>
+                  <td>6
+</td>
+                  <td>6
+</td>
+                  <td>6
+</td>
+                  <td>6
+</td>
+                  <td>7
+</td>
+                  <td>7
+</td>
+                  <td>9
+</td>
+                  <td>12
+</td>
+              </tr>
+
+      <tr>
+        <td>Wind gust (mph)</td>
+                  <td>5
+</td>
+                  <td>5
+</td>
+                  <td>5
+</td>
+                  <td>6
+</td>
+                  <td>8
+</td>
+                  <td>8
+</td>
+                  <td>11
+</td>
+                  <td>13
+</td>
+              </tr>
+
+      <tr>
+        <td>Wind direction</td>
+                  <td title="247&deg;">WSW</td>
+                  <td title="243&deg;">WSW</td>
+                  <td title="240&deg;">WSW</td>
+                  <td title="224&deg;">SW</td>
+                  <td title="213&deg;">SSW</td>
+                  <td title="209&deg;">SSW</td>
+                  <td title="200&deg;">SSW</td>
+                  <td title="192&deg;">SSW</td>
+              </tr>
+
+      <tr>
+        <td>Rainfall (hour)</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+              </tr>
+
+      <tr>
+        <td>Precip. Probability</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+              </tr>
+
+      <tr>
+        <td>Pressure</td>
+                  <td>30.12
+</td>
+                  <td>30.15
+</td>
+                  <td>30.15
+</td>
+                  <td>30.15
+</td>
+                  <td>30.12
+</td>
+                  <td>30.12
+</td>
+                  <td>30.12
+</td>
+                  <td>30.12
+</td>
+              </tr>
+
+      <tr>
+        <td>Soil temp.</td>
+                  <td>28&deg;
+</td>
+                  <td>27&deg;
+</td>
+                  <td>27&deg;
+</td>
+                  <td>27&deg;
+</td>
+                  <td>27&deg;
+</td>
+                  <td>28&deg;
+</td>
+                  <td>29&deg;
+</td>
+                  <td>30&deg;
+</td>
+              </tr>
+
+      <tr>
+        <td>Sky cover</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>0%
+</td>
+                  <td>20%
+</td>
+                  <td>40%
+</td>
+                  <td>60%
+</td>
+                  <td>69%
+</td>
+                  <td>77%
+</td>
+              </tr>
+
+      <tr>
+        <td>Net solar radiation</td>
+                  <td>-51
+</td>
+                  <td>97
+</td>
+                  <td>150
+</td>
+                  <td>288
+</td>
+                  <td>425
+</td>
+                  <td>562
+</td>
+                  <td>517
+</td>
+                  <td>471
+</td>
+              </tr>
+
+      <tr>
+        <td>Shortwave solar radiation</td>
+                  <td>56
+</td>
+                  <td>112
+</td>
+                  <td>168
+</td>
+                  <td>307
+</td>
+                  <td>446
+</td>
+                  <td>585
+</td>
+                  <td>537
+</td>
+                  <td>488
+</td>
+              </tr>
+
+      <tr>
+        <td>Evapotranspiration</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.00"
+</td>
+                  <td>0.01"
+</td>
+                  <td>0.01"
+</td>
+                  <td>0.02"
+</td>
+                  <td>0.01"
+</td>
+                  <td>0.01"
+</td>
+              </tr>
+
+    </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="9">
+            <button type="button" class="backButton" data-min-hour="1" data-max-hour="8" disabled>&lArr; Back</button>
+            <button type="button" class="nextButton" data-min-hour="1" data-max-hour="8" >More &rArr;</button>
+          </td>
+        </tr>
+      </tfoot>
+
+    
+  </table>
+
+</form>
+                            </div>
+
+      </div>
+
+    </div>
+      
+</div>
+
+      </div>
+    </div>
+
+    <footer>
+    <div>
+  <a href="http://www.anythingweather.com" target="_blank">AnythingWeather Communications, Inc. 41701 Corporate Way, Ste. 6, Palm Desert, CA 92260</a><br>
+  Copyright 1999-2012 AnythingWeather.com
+</div>
+    </footer>
+
+        <script type="text/javascript" language="javascript"  src="https://portal.anythingweather.com/aw-portal/public/javascripts/jquery.gritter.js"></script>
+<script>
+  $(function(){
+
+    $('nav li').click(function(){ window.location = $('a',this).attr('href'); });
+
+    $('#logoutButton')
+      .button({ icons: { primary: 'ui-icon-locked' } })
+      .click(function(){ window.location = '/aw-portal/logout'; });
+
+    $('#shoppingCartButton')
+      .button({ icons: { primary: 'ui-icon-cart'} })
+      .click(function(){ window.location = '/customer/account/login'; });
+
+    
+    
+    
+  });
+</script>
+
+  </body>
+</html>
+<!--
+AnythingWeather Service Portal 1.9.1 Production
+http://localhost:8080/aw-webapi
+-->
