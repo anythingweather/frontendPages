@@ -1,0 +1,141 @@
+/*main*/
+.slide-view {
+    font: 12px/26px Helvetica, Arial, Verdana, sans-serif;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    width: 77em;
+    margin: 0 auto 3em auto;
+    border: 1px solid #c0c0c0;
+}
+
+.slide-view .head {
+    color: #000;
+    font-weight: bolder;
+    background-color: #EDF3F8 !important;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.slide-view .date {
+    height: 24px;
+    line-height: 12px;
+    padding: 2px;
+}
+
+.slide-view .date-title {
+    line-height: 24px;
+    padding: 2px;
+}
+
+.slide-view li {
+    padding: 0 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/*head view*/
+.slide-view .view-head {
+    width: 14em;
+    -webkit-box-shadow: 4px 0 6px #ddd;
+    -ms-box-shadow: 4px 0 6px #ddd;
+    -moz-box-shadow: 4px 0 6px #ddd;
+    box-shadow: 4px 0 6px #ddd;
+    color: #777;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.slide-view .view-head li:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+/*data view*/
+.slide-view .view-data {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    text-align: left;
+}
+
+.view-data .data-list {
+    display: inline-block;
+    min-width: 60px;
+    width: 9em;
+}
+
+.view-data .data-list-first {
+    margin-left: 14em;
+}
+
+.slide-view .view-data li {
+    text-align: center;
+}
+
+.slide-view .view-data li:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+/*button*/
+.view-more {
+    width: 100%;
+}
+.view-more button {
+    display: inline-block;
+    text-align: center;
+    width: 45%;
+    height: 3em;
+    margin: 1em 0;
+}
+
+/*special*/
+#content-hour #hour-title {
+    width: 14em;
+}
+
+.slide-view #hour-data .data-list-first {
+    margin-left: 14em;
+}
+
+@media only screen and (max-width: 800px) {
+    .forecast-service h2 {
+        margin: 0.5em;
+        padding: 0;
+        font-size: 14px;
+    }
+
+    .slide-view {
+        width: 100%;
+        margin: 0 0 3em 0;
+        border: none;
+        line-height: 24px;
+    }
+
+    .slide-view .view-head {
+        width: 9em;
+    }
+
+    .view-data .data-list {
+        width: initial;
+    }
+
+    .view-data .data-list-first {
+        margin-left: 9em;
+    }
+
+    #content-hour #hour-title {
+        width: 13em;
+    }
+
+    .slide-view #hour-data .data-list-first {
+        margin-left: 13em;
+    }
+
+    .view-data .data-list-first {
+        padding-left: 5px;
+    }
+}

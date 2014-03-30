@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet xmlns="http://anythingweather.com/">
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:element name="Table">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="ForecastDate" type="xs:dateTime" minOccurs="1" />
+                    <xs:element name="ZipCode" type="xs:integer" minOccurs="1" />
+                    <xs:element name="City" type="xs:string" minOccurs="1" />
+                    <xs:element name="State" type="xs:string" minOccurs="1" />
+                    <xs:element name="StationId" type="xs:integer" minOccurs="1" />
+                    <xs:element name="Latitude" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="Longitude" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="MinTemp" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="MaxTemp" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="WindSpeed" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="Precipitation" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="Evapotranspiration" type="xs:decimal" minOccurs="1" />
+                    <xs:element name="ProbabilityOfPrecipitation" type="xs:integer" minOccurs="0" />                
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
+	<Table id="Day  1">
+		<ForecastDate>2014-03-28</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">-999.0</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">-999.0</MaxDailyTemp>
+		<WindSpeedPeak units="mph">-999.0</WindSpeedPeak>
+		<Precipitation units="inches">-999.0</Precipitation>
+		<Evapotranspiration units="inches">-999</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">-999</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  2">
+		<ForecastDate>2014-03-29</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">41.6</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">55.0</MaxDailyTemp>
+		<WindSpeedPeak units="mph">17.1</WindSpeedPeak>
+		<Precipitation units="inches">0.41</Precipitation>
+		<Evapotranspiration units="inches">0.12</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">80</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  3">
+		<ForecastDate>2014-03-30</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">37.3</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">47.1</MaxDailyTemp>
+		<WindSpeedPeak units="mph">23.9</WindSpeedPeak>
+		<Precipitation units="inches">1.66</Precipitation>
+		<Evapotranspiration units="inches">0.04</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">88</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  4">
+		<ForecastDate>2014-03-31</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">34.6</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">39.5</MaxDailyTemp>
+		<WindSpeedPeak units="mph">23.8</WindSpeedPeak>
+		<Precipitation units="inches">0.69</Precipitation>
+		<Evapotranspiration units="inches">0.06</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">72</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  5">
+		<ForecastDate>2014-04-01</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">31.6</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">54.4</MaxDailyTemp>
+		<WindSpeedPeak units="mph">21.8</WindSpeedPeak>
+		<Precipitation units="inches">0.01</Precipitation>
+		<Evapotranspiration units="inches">0.16</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">16</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  6">
+		<ForecastDate>2014-04-02</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">28.4</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">53.2</MaxDailyTemp>
+		<WindSpeedPeak units="mph">10.2</WindSpeedPeak>
+		<Precipitation units="inches">0.05</Precipitation>
+		<Evapotranspiration units="inches">0.08</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">48</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  7">
+		<ForecastDate>2014-04-03</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">32.5</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">55.2</MaxDailyTemp>
+		<WindSpeedPeak units="mph">10.1</WindSpeedPeak>
+		<Precipitation units="inches">0.0</Precipitation>
+		<Evapotranspiration units="inches">0.12</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">0</ProbabilityOfPrecipitation>
+	</Table>
+	<Table id="Day  8">
+		<ForecastDate>2014-04-04</ForecastDate>
+		<ZipCode>2826</ZipCode>
+		<City>Providence</City>
+		<State>Rhode Island</State>
+		<StationId>60379</StationId>
+		<Latitude>41.8238</Latitude>
+		<Longitude>-71.4124</Longitude>
+		<MinDailyTemp units="degreesF">38.6</MinDailyTemp>
+		<MaxDailyTemp units="degreesF">53.7</MaxDailyTemp>
+		<WindSpeedPeak units="mph">14.8</WindSpeedPeak>
+		<Precipitation units="inches">0.29</Precipitation>
+		<Evapotranspiration units="inches">0.14</Evapotranspiration>
+		<ProbabilityOfPrecipitation units="%">40</ProbabilityOfPrecipitation>
+	</Table>
+</DataSet>

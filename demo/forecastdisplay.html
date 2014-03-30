@@ -173,563 +173,54 @@
       <div class="forecast-pane">
 
                 <div class="daily-forecast-pane">
-                      <table class="daily premium">
-
-      <thead>
-    <tr>
-      <th>Daily forecast</th>
-      <th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th><th>Day 5</th><th>Day 6</th><th>Day 7</th>    </tr>
-  </thead>
-
-  <tbody>
-
-    <tr>
-      <td>Date</td>
-              <td>Tuesday<br>Mar 25</td>
-              <td>Wednesday<br>Mar 26</td>
-              <td>Thursday<br>Mar 27</td>
-              <td>Friday<br>Mar 28</td>
-              <td>Saturday<br>Mar 29</td>
-              <td>Sunday<br>Mar 30</td>
-              <td>Monday<br>Mar 31</td>
-          </tr>
-
-    
-    <tr>
-      <td>High temperature</td>
-              <td>
-          40&deg;
-        </td>
-              <td>
-          37&deg;
-        </td>
-              <td>
-          42&deg;
-        </td>
-              <td>
-          50&deg;
-        </td>
-              <td>
-          47&deg;
-        </td>
-              <td>
-          46&deg;
-        </td>
-              <td>
-          50&deg;
-        </td>
-          </tr>
-
-    <tr>
-      <td>Low temperature</td>
-          <td>
-          &mdash;
-      </td>
-          <td>
-          24&deg;
-      </td>
-          <td>
-          19&deg;
-      </td>
-          <td>
-          33&deg;
-      </td>
-          <td>
-          37&deg;
-      </td>
-          <td>
-          35&deg;
-      </td>
-          <td>
-          31&deg;
-      </td>
-        </tr>
-
-    <tr>
-      <td>Wind peak (mph)</td>
-          <td>
-        16
-      </td>
-          <td>
-        32
-      </td>
-          <td>
-        23
-      </td>
-          <td>
-        25
-      </td>
-          <td>
-        16
-      </td>
-          <td>
-        27
-      </td>
-          <td>
-        20
-      </td>
-        </tr>
-
-    <tr>
-      <td>Precip. probability</td>
-              <td>
-          0%
-        </td>
-              <td>
-          69%
-        </td>
-              <td>
-          0%
-        </td>
-              <td>
-          54%
-        </td>
-              <td>
-          52%
-        </td>
-              <td>
-          56%
-        </td>
-              <td>
-          0%
-        </td>
-          </tr>
-
-    <tr>
-      <td>Precip. total (in)</td>
-          <td>
-        0.00"
-      </td>
-          <td>
-        0.33"
-      </td>
-          <td>
-        0.00"
-      </td>
-          <td>
-        0.21"
-      </td>
-          <td>
-        0.29"
-      </td>
-          <td>
-        0.29"
-      </td>
-          <td>
-        0.00"
-      </td>
-        </tr>
-
-    <tr>
-      <td>Evapo. total (in)</td>
-          <td>
-        0.13"
-      </td>
-          <td>
-        0.10"
-      </td>
-          <td>
-        0.16"
-      </td>
-          <td>
-        0.09"
-      </td>
-          <td>
-        0.07"
-      </td>
-          <td>
-        0.12"
-      </td>
-          <td>
-        0.17"
-      </td>
-        </tr>
-
-  </tbody>
-  </table>
-                            </div>
+                <!-- Start add Content -->
+                    <div id="content-weekly" class="slide-view">
+                        <ul id="daily-title" class="view-head">
+                            <li class="head">Daily forecast</li>
+                            <li class="date-title">Date</li>
+                            <li>High temperature</li>
+                            <li>Low temperature</li>
+                            <li>Wind peak (mph)</li>
+                            <li>Precip. probability</li>
+                            <li>Precip. total (in)</li>
+                            <li>Evapo. total (in)</li>
+                        </ul>
+                        <div id="daily-data" class="view-data"></div>
+                    </div>
+                <!-- End add Content -->
+                </div>
 
                 <div class="hourly-forecast-pane">
                       
-<form action="https://portal.anythingweather.com/aw-portal/forecast/hourlyforecast" method="get" class="hourlyForecastForm" data-service="{&quot;id&quot;:183,&quot;subscriberId&quot;:4724,&quot;serviceLevel&quot;:&quot;PREMIUM&quot;,&quot;locationType&quot;:&quot;USL&quot;,&quot;location&quot;:&quot;60379&quot;,&quot;title&quot;:&quot;Right Weather in Providence, Rhode Island&quot;}">
 
-  <input type="hidden" name="serviceId" value="183">
+    <div id="content-hour" class="slide-view">
+        <ul id="hour-title" class="view-head">
+            <li class="head date"></li>
+            <li>Average temp</li>
+            <li>Max temp (last hour)</li>
+            <li>Min temp (last hour)</li>
+            <li>Dew point</li>
+            <li>Relative humidity</li>
+            <li>Surface wind speed (mph)</li>
+            <li>80m wind speed (mph)</li>
+            <li>Wind gust (mph)</li>
+            <li>Wind direction</li>
+            <li>Rainfall (hour)</li>
+            <li>Precip. Probability</li>
+            <li>Pressure</li>
+            <li>Soil temp.</li>
+            <li>Sky cover</li>
+            <li>Net solar radiation</li>
+            <li>Shortwave solar radiation</li>
+            <li>Evapotranspiration</li>
+        </ul>
+        <div id="hour-data" class="view-data"></div>
+        <!-- <div id="more" class="view-more">
+            <button disabled class="prev ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover ui-state-focus">back</button>
+            <button class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover ui-state-focus">more</button>
+        </div> -->
+    </div>
 
-  <input type="hidden" name="filters.locationType" value="USL">
-  <input type="hidden" name="filters.location" value="60379">
-  <input type="hidden" name="filters.serviceLevel" value="PREMIUM">
-  <input type="hidden" name="filters.minHourNumber" value="1">
-  <input type="hidden" name="filters.maxHourNumber" value="8">
-  <input type="hidden" name="totalHourCount" value="176">
-
-  <table class="hourly premium">
-
-            <thead>
-      <tr>
-        <th colspan="9">Hourly forecast</th>
-      </tr>
-      <tr>
-        <th>Tuesday<br>March 25, 2014</th>
-                  <th>Hour 1<br>06:00 AM</th>
-                  <th>Hour 2<br>07:00 AM</th>
-                  <th>Hour 3<br>08:00 AM</th>
-                  <th>Hour 4<br>09:00 AM</th>
-                  <th>Hour 5<br>10:00 AM</th>
-                  <th>Hour 6<br>11:00 AM</th>
-                  <th>Hour 7<br>12:00 PM</th>
-                  <th>Hour 8<br>01:00 PM</th>
-              </tr>
-    </thead>
-
-    <tbody>
-
-      <tr>
-      <tr>
-        <td>Average temp</td>
-                  <td>23&deg;
-</td>
-                  <td>23&deg;
-</td>
-                  <td>24&deg;
-</td>
-                  <td>28&deg;
-</td>
-                  <td>31&deg;
-</td>
-                  <td>34&deg;
-</td>
-                  <td>36&deg;
-</td>
-                  <td>37&deg;
-</td>
-              </tr>
-
-      <td>Max temp (last hour)</td>
-              <td>25&deg;
-</td>
-              <td>24&deg;
-</td>
-              <td>25&deg;
-</td>
-              <td>28&deg;
-</td>
-              <td>32&deg;
-</td>
-              <td>35&deg;
-</td>
-              <td>37&deg;
-</td>
-              <td>38&deg;
-</td>
-            </tr>
-
-      <tr>
-        <td>Min temp (last hour)</td>
-                  <td>20&deg;
-</td>
-                  <td>20&deg;
-</td>
-                  <td>23&deg;
-</td>
-                  <td>24&deg;
-</td>
-                  <td>28&deg;
-</td>
-                  <td>31&deg;
-</td>
-                  <td>34&deg;
-</td>
-                  <td>36&deg;
-</td>
-              </tr>
-
-      <tr>
-        <td>Dew point</td>
-                  <td>2&deg;
-</td>
-                  <td>3&deg;
-</td>
-                  <td>3&deg;
-</td>
-                  <td>3&deg;
-</td>
-                  <td>2&deg;
-</td>
-                  <td>2&deg;
-</td>
-                  <td>3&deg;
-</td>
-                  <td>4&deg;
-</td>
-              </tr>
-
-      <tr>
-        <td>Relative humidity</td>
-                  <td>40%
-</td>
-                  <td>41%
-</td>
-                  <td>38%
-</td>
-                  <td>33%
-</td>
-                  <td>28%
-</td>
-                  <td>25%
-</td>
-                  <td>24%
-</td>
-                  <td>24%
-</td>
-              </tr>
-
-      <tr>
-        <td>Surface wind speed (mph)</td>
-                  <td>4
-</td>
-                  <td>4
-</td>
-                  <td>4
-</td>
-                  <td>5
-</td>
-                  <td>6
-</td>
-                  <td>6
-</td>
-                  <td>8
-</td>
-                  <td>10
-</td>
-              </tr>
-
-      <tr>
-        <td>80m wind speed (mph)</td>
-                  <td>6
-</td>
-                  <td>6
-</td>
-                  <td>6
-</td>
-                  <td>6
-</td>
-                  <td>7
-</td>
-                  <td>7
-</td>
-                  <td>9
-</td>
-                  <td>12
-</td>
-              </tr>
-
-      <tr>
-        <td>Wind gust (mph)</td>
-                  <td>5
-</td>
-                  <td>5
-</td>
-                  <td>5
-</td>
-                  <td>6
-</td>
-                  <td>8
-</td>
-                  <td>8
-</td>
-                  <td>11
-</td>
-                  <td>13
-</td>
-              </tr>
-
-      <tr>
-        <td>Wind direction</td>
-                  <td title="247&deg;">WSW</td>
-                  <td title="243&deg;">WSW</td>
-                  <td title="240&deg;">WSW</td>
-                  <td title="224&deg;">SW</td>
-                  <td title="213&deg;">SSW</td>
-                  <td title="209&deg;">SSW</td>
-                  <td title="200&deg;">SSW</td>
-                  <td title="192&deg;">SSW</td>
-              </tr>
-
-      <tr>
-        <td>Rainfall (hour)</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-              </tr>
-
-      <tr>
-        <td>Precip. Probability</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-              </tr>
-
-      <tr>
-        <td>Pressure</td>
-                  <td>30.12
-</td>
-                  <td>30.15
-</td>
-                  <td>30.15
-</td>
-                  <td>30.15
-</td>
-                  <td>30.12
-</td>
-                  <td>30.12
-</td>
-                  <td>30.12
-</td>
-                  <td>30.12
-</td>
-              </tr>
-
-      <tr>
-        <td>Soil temp.</td>
-                  <td>28&deg;
-</td>
-                  <td>27&deg;
-</td>
-                  <td>27&deg;
-</td>
-                  <td>27&deg;
-</td>
-                  <td>27&deg;
-</td>
-                  <td>28&deg;
-</td>
-                  <td>29&deg;
-</td>
-                  <td>30&deg;
-</td>
-              </tr>
-
-      <tr>
-        <td>Sky cover</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>0%
-</td>
-                  <td>20%
-</td>
-                  <td>40%
-</td>
-                  <td>60%
-</td>
-                  <td>69%
-</td>
-                  <td>77%
-</td>
-              </tr>
-
-      <tr>
-        <td>Net solar radiation</td>
-                  <td>-51
-</td>
-                  <td>97
-</td>
-                  <td>150
-</td>
-                  <td>288
-</td>
-                  <td>425
-</td>
-                  <td>562
-</td>
-                  <td>517
-</td>
-                  <td>471
-</td>
-              </tr>
-
-      <tr>
-        <td>Shortwave solar radiation</td>
-                  <td>56
-</td>
-                  <td>112
-</td>
-                  <td>168
-</td>
-                  <td>307
-</td>
-                  <td>446
-</td>
-                  <td>585
-</td>
-                  <td>537
-</td>
-                  <td>488
-</td>
-              </tr>
-
-      <tr>
-        <td>Evapotranspiration</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.00"
-</td>
-                  <td>0.01"
-</td>
-                  <td>0.01"
-</td>
-                  <td>0.02"
-</td>
-                  <td>0.01"
-</td>
-                  <td>0.01"
-</td>
-              </tr>
-
-    </tbody>
-
-      <tfoot>
-        <tr>
-          <td colspan="9">
-            <button type="button" class="backButton" data-min-hour="1" data-max-hour="8" disabled>&lArr; Back</button>
-            <button type="button" class="nextButton" data-min-hour="1" data-max-hour="8" >More &rArr;</button>
-          </td>
-        </tr>
-      </tfoot>
-
-    
-  </table>
-
-</form>
                             </div>
 
       </div>
@@ -767,7 +258,10 @@
     
   });
 </script>
-
+    <!-- Start JS for Forecast -->
+    <script src="../src/tmp/moment.min.js"></script>
+    <script src="../src/js/forecast/app.js"></script>
+    <!-- End JS for Forecast -->
   </body>
 </html>
 <!--

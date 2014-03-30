@@ -27,6 +27,7 @@ body {
 ul, li, ol, li {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 input::-webkit-input-placeholder,

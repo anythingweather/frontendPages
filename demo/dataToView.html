@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <title>Demo for XML to View</title>
+        <script src="../src/tmp/jquery.min.js"></script>
+        <script src="../src/tmp/jquery.ui.js"></script>
+        <script src="../src/tmp/moment.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/right/jquery-ui.custom.css" charset="utf-8" ></link>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/main.css" charset="utf-8" ></link>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/desktop.css" charset="utf-8" ></link>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/jquery.gritter.css" charset="utf-8" ></link>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/bubbles.css" charset="utf-8" ></link>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/tip-tip.css" charset="utf-8" ></link>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/ff-controls.css" charset="utf-8" ></link>
+        <link rel="stylesheet" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/default/jquery-ui.custom.css"></link>
+        <!--suppress HtmlUnknownTag -->
+        <style>
+          #forecastDisplay { padding: 2em; }
+        
+          table { margin: 0 auto 2em; border: 1px solid silver;  }
+          table th { border-bottom: 1px solid #ccc; padding: 0.5em; background-color: #edf3f8; }
+          table td { text-align: center; padding: 0.5em 1em; }
+          table td:first-child { text-align: left; font-weight: bold; color: silver; white-space: nowrap;}
+        
+          table.daily { width: 92%; }
+        
+          td.aside { text-align: center !important; }
+        
+          table.hourly { width: 92%; }
+          table.hourly tfoot { border-top: 1px solid #ccc; background-color: #f8f8f8; }
+          table.hourly .nextButton { float: right; }
+          button {cursor: pointer; }
+          button[disabled] { opacity: 0.5; cursor: auto; }
+          .forecast-service { border: 1px solid silver; border-radius: 2em; margin: 1em 0 0.75em 0; }
+          #forecastSelectorPane { text-align: right; padding-right: 4em; }
+          .forecast-service h2 { margin: 0 0 1em 0; padding: 0.5em 1em; }
+          .forecast-service h2 button { display: none; }
+          label { color: #555; font-weight: bold; display: inline-block; }
+          tr:nth-child(2n) td { background-color: #fafafa; }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://portal.anythingweather.com/aw-portal/public/stylesheets/branding/right/branding.css" charset="utf-8" ></link>
+        <!-- Start CSS for istrike -->
+        <link rel="stylesheet" href="../src/css/base.css" />
+        <link rel="stylesheet" href="../src/css/forecastdisplay.css" />
+        <!-- End CSS for istrike -->
+    </head>
+    <body>
+        <div id="content-weekly" class="slide-view">
+            <ul id="daily-title" class="view-head">
+                <li class="head">Daily forecast</li>
+                <li class="date-title">Date</li>
+                <li>High temperature</li>
+                <li>Low temperature</li>
+                <li>Wind peak (mph)</li>
+                <li>Precip. probability</li>
+                <li>Precip. total (in)</li>
+                <li>Evapo. total (in)</li>
+            </ul>
+            <div id="daily-data" class="view-data"></div>
+        </div>
+        <div id="content-hour" class="slide-view">
+            <ul id="hour-title" class="view-head">
+                <li class="head date"></li>
+                <li>Average temp</li>
+                <li>Max temp (last hour)</li>
+                <li>Min temp (last hour)</li>
+                <li>Dew point</li>
+                <li>Relative humidity</li>
+                <li>Surface wind speed (mph)</li>
+                <li>80m wind speed (mph)</li>
+                <li>Wind gust (mph)</li>
+                <li>Wind direction</li>
+                <li>Rainfall (hour)</li>
+                <li>Precip. Probability</li>
+                <li>Pressure</li>
+                <li>Soil temp.</li>
+                <li>Sky cover</li>
+                <li>Net solar radiation</li>
+                <li>Shortwave solar radiation</li>
+                <li>Evapotranspiration</li>
+            </ul>
+            <div id="hour-data" class="view-data"></div>
+            <!-- <div id="more" class="view-more">
+                <button disabled class="prev ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover ui-state-focus">back</button>
+                <button class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover ui-state-focus">more</button>
+            </div> -->
+        </div>
+        <script src="../src/js/forecast/app.js"></script>
+    </body>
+</html>
