@@ -133,6 +133,8 @@ function bindScrollEvent(id) {
     var contentWidth = contentEl.width();
     var scrollLeft;
     window.onresize = function() {
+        //reset width
+        contentEl.width('');
         contentWidth = contentEl.width();
     }
     target.on('scroll', function(e) {

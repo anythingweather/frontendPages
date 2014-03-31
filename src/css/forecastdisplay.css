@@ -5,9 +5,8 @@
     overflow: hidden;
     text-align: center;
     background-color: #fff;
-    width: 77em;
+    width: 96%;
     margin: 0 auto 3em auto;
-    border: 1px solid #c0c0c0;
 }
 
 .slide-view .head {
@@ -37,7 +36,7 @@
 
 /*head view*/
 .slide-view .view-head {
-    width: 14em;
+    width: 12%;
     -webkit-box-shadow: 4px 0 6px #ddd;
     -ms-box-shadow: 4px 0 6px #ddd;
     -moz-box-shadow: 4px 0 6px #ddd;
@@ -48,6 +47,8 @@
     top: 0;
     left: 0;
     text-align: center;
+    border: 1px solid #c0c0c0;
+    border-right: 0;
 }
 
 .slide-view .view-head li:nth-child(odd) {
@@ -65,11 +66,14 @@
 .view-data .data-list {
     display: inline-block;
     min-width: 60px;
-    width: 9em;
+    width: 12.4%;
+    border: 1px solid #c0c0c0;
+    border-left: 0;
 }
 
 .view-data .data-list-first {
-    margin-left: 14em;
+    margin-left: 12%;
+    padding-left: 5px;
 }
 
 .slide-view .view-data li {
@@ -101,7 +105,28 @@
     margin-left: 14em;
 }
 
-@media only screen and (max-width: 800px) {
+/*tablet*/
+@media only screen and (min-device-width: 600px) and (max-device-width: 1024px) {
+    .slide-view {
+        width: 77em;
+    }
+    .slide-view .view-head {
+        width: 14em;
+    }
+    .view-data .data-list {
+        width: 9em;
+    }
+    .view-data .data-list-first,
+    .slide-view #hour-data .data-list-first {
+        margin-left: 13em;
+        padding-left: 4px;
+    }
+    #content-hour #hour-title {
+        width: 14em;
+    }
+}
+/*phone*/
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .forecast-service h2 {
         margin: 0.5em;
         padding: 0;
@@ -117,6 +142,7 @@
 
     .slide-view .view-head {
         width: 9em;
+        border-left: none;
     }
 
     .view-data .data-list {
@@ -125,6 +151,7 @@
 
     .view-data .data-list-first {
         margin-left: 9em;
+        padding-left: 5px;
     }
 
     #content-hour #hour-title {
@@ -135,7 +162,8 @@
         margin-left: 13em;
     }
 
-    .view-data .data-list-first {
-        padding-left: 5px;
+    #daily-data > ul:last-child,
+    #hour-data > ul:last-child {
+        border-right: none;
     }
 }
