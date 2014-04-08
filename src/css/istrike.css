@@ -1,36 +1,24 @@
 /*istrike CSS for phone in vertical origin*/
 @media only screen and (max-width: 800px) {
-    #istrike-map-header-panel {
-        left: 0;
-        width: 60%;
+    #istrike-map-monitored-pane {
+        width: 50%;
+        left: 48px;
+        top: 0;
+        overflow: hidden;
     }
 
-    #istrike-map-header-panel .dk_container {
-        font-size: 12px;
+    .droplist-item {
+        padding: 3px;
+        font-size: 11px;
+        line-height: 1;
     }
 
-    .multi-service a.dk_toggle {
-        width: auto;
-        padding: 2px 20px 2px 2px;
-        word-break: break-all;
+    .droplist-list {
+        border-radius: .5em;
     }
 
-    .dk_toggle:after {
-        right: 6px;
-    }
-
-    .dk_mobile select {
-        position: absolute;
-        top: -99999em;
-        visibility: hidden
-    }
-
-    .dk_options a {
-        padding: 5px 2px;
-    }
-
-    .service-toolbar ul.service-toolbar-controls li {
-        padding: 10px 10px 10px 7px;
+    #radar-floating-toolbar ul li.radar-palette-item {
+        display: none;
     }
 
     /*this is not cool for the footer filter*/
@@ -43,19 +31,25 @@
         white-space: nowrap;
     }
     #istrike-age-buttonset label {
-        width: 16%;
+        width: 16.4%;
     }
 
     #istrike-ranges-legend-buttonset label {
         width: 24%;
     }
+
     .ui-button-text-only .ui-button-text {
-        padding: .2em;
+        padding: 2px 0px;
+        letter-spacing: -2px;
+    }
+
+    #istrike-ranges-legend-buttonset label .ui-button-text {
+        letter-spacing: 0;
     }
 
     #istrike-timestamp-pane {
         position: absolute;
-        bottom: 34px;
+        bottom: 80px;
         width: 100%;
         left: 0;
         text-shadow: 1px 1px #C0C0C0;
@@ -163,10 +157,22 @@
         -moz-border-radius: 0;
         border-radius: 0;
     }
+
+    #radar-floating-toolbar {
+        bottom: 38px;
+        line-height: 1;
+    }
+
+    #radar-floating-toolbar .radar-palette-controls {
+        margin: 0.25em 0;
+    }
+
+    #radar-floating-toolbar .radar-palette-controls button {
+        padding: 0.5em 2.5em;
+    }
 }
 
 @media screen and (max-device-width: 320px) and (device-aspect-ratio: 2/3) {
-    /*hide the footer??*/
     #istrike-map-footer-panel {
         display: none;
     }
@@ -183,6 +189,34 @@
         left: 17%;
         text-shadow: 1px 1px #C0C0C0;
         font-size: 10px;
+    }
+
+    #radar-floating-toolbar {
+        bottom: 0;
+    }
+}
+
+@media screen and (max-device-height: 480px) {
+    #istrike-map-footer-panel {
+        display: none;
+    }
+
+    #istrike-map-header-panel {
+        left: 17%;
+        width: 49%;
+    }
+
+    #istrike-timestamp-pane {
+        position: absolute;
+        bottom: 42px;
+        width: 82%;
+        left: 17%;
+        text-shadow: 1px 1px #C0C0C0;
+        font-size: 10px;
+    }
+
+    #radar-floating-toolbar {
+        bottom: 0;
     }
 }
 
