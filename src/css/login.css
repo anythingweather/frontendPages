@@ -1,5 +1,5 @@
 /*login CSS for phone in vertical origin*/
-@media only screen and (max-device-width: 320px) and (max-device-width: 360px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     div.banner {
         height: 111px;
         margin-bottom: 30px;

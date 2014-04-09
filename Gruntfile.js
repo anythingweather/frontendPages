@@ -54,6 +54,6 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     //grunt.registerTask('default', ['jshint', 'less', 'watch', 'uglify', 'cssmin']);
-    grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['uglify', 'cssmin']);
     //grunt.registerTask('build', ['less', 'uglify', 'cssmin']);
 };

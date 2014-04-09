@@ -1,4 +1,8 @@
 /*istrike CSS for phone in vertical origin*/
+#radar-floating-toolbar {
+    display: block;
+}
+
 @media only screen and (max-width: 800px) {
     #istrike-map-monitored-pane {
         width: 50%;
